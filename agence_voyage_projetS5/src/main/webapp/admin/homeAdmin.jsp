@@ -24,6 +24,10 @@
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
+  <% if (session.getAttribute("user") == null){
+	  response.sendRedirect("login.jsp");
+  }
+  %>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
@@ -169,7 +173,7 @@
                 <a class="dropdown-item">Activity<i class="dropdown-item-icon ti-location-arrow"></i></a>
                 <a class="dropdown-item">FAQ<i class="dropdown-item-icon ti-help-alt"></i></a>
                 
-                <button class="dropdown-item" type="button">Sign Out<i class="dropdown-item-icon ti-power-off"></i></button>
+                <a class="dropdown-item" href="logout">Sign Out<i class="dropdown-item-icon ti-power-off"></i></a>
                 
               </div>
             </li>

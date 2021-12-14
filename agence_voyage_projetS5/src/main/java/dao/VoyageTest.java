@@ -18,7 +18,7 @@ public class VoyageTest {
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+		/*final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		System.out.print("hello");
 		
@@ -36,7 +36,7 @@ public class VoyageTest {
 			System.out.println("Done!");
 		} finally {
 			factory.close();
-		}
+		}*/
 	}
 
 }

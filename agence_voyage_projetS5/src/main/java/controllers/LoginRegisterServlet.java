@@ -17,7 +17,7 @@ import dao.IUserImplDao;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet(urlPatterns = { "/Servlet", "/register","/login"})
+@WebServlet(urlPatterns = { "/Servlet", "/register","/logout","/login"})
 public class LoginRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -46,9 +46,11 @@ public class LoginRegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(3600);
 		
-		
+	if (request.getServletPath().equals("/logout")) {
+		request.getSession().invalidate();	
+		request.getRequestDispatcher("/home.jsp").forward(request, response);
+	}
 	if (request.getServletPath().equals("/register")) {
 		
 		IUserImplDao userDao = new IUserImplDao();
@@ -90,7 +92,7 @@ public class LoginRegisterServlet extends HttpServlet {
              if (user.getRole().name().equals("admin")) {
  				session.setAttribute("user", user);
  				System.out.print("you are an admin ");
- 				request.getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
+ 				request.getRequestDispatcher("/admin/homeAdmin.jsp").forward(request, response);
              }
 		    }
              else {

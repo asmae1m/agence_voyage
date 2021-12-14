@@ -37,7 +37,6 @@ public class LoginRegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -84,12 +83,12 @@ public class LoginRegisterServlet extends HttpServlet {
 			System.out.println("idUser: " + user.getId());
 
              if (user.getRole().name().equals("Client")) {
-				
+            	session.setAttribute("user", user);
 				System.out.print("you are a client!!!");
 				request.getRequestDispatcher("/home.jsp").forward(request, response);
 			}
              if (user.getRole().name().equals("admin")) {
- 				session.setAttribute("admin", user);
+ 				session.setAttribute("user", user);
  				System.out.print("you are an admin ");
  				request.getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
              }

@@ -31,7 +31,6 @@ public class VoyageTest {
 
 			System.out.println("Saving the voyage...");
 			voyagedao.saveVoyage(tempuser);
-			voyagedao.deleteVoyage(6);
 
 
 			System.out.println("Done!");

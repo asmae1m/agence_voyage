@@ -2,6 +2,6 @@ package dao;
 import beans.*;
 
 public interface IClientDAO {
-	Client getClient(int id);
+	public void saveClient(Client client);
 
 }

@@ -25,6 +25,12 @@ public class Client {
 	@Column(name = "telephone")
 	private int telephone;
 	
+	@Column(name = "codePostal")
+	private int codePostal;
+	
+	@Column(name = "email")
+	private String email;
+	
 	@OneToOne
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
@@ -95,6 +101,25 @@ public class Client {
 	public void setTelephone(int telephone) {
 		this.telephone = telephone;
 	}
+
+	public int getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(int codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	
 	
 	
 	

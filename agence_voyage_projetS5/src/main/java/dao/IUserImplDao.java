@@ -97,5 +97,13 @@ public class IUserImplDao implements IUserDao{
 		}
 		return b;
 	}
+	public int getId(User user) {		
+		Integer id = (Integer)session.save(user);
+		System.out.println("ID USER EST : "+id);
+		return id;
+		
+	}
+	
+	
 }
 

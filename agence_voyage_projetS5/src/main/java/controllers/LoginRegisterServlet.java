@@ -55,18 +55,21 @@ public class LoginRegisterServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-    if (request.getServletPath().equals("/homeAdmin")) {
-	    	System.out.println("YOU ARE HERE:"+request.getServletPath());
-			request.getRequestDispatcher("homeAdmin.jsp").forward(request, response);
-		}
-		
+ 
 	if (request.getServletPath().equals("/logout")) {
-		request.getSession().invalidate();	
+		session.removeAttribute("user");
+		System.out.println("the user is invalid now!");
+		session.invalidate();
+		System.out.println("la session est devenue invalide");
 		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		
 	}
+	
+	
 	if (request.getServletPath().equals("/register")) {
 		
 		IUserImplDao userDao = new IUserImplDao();
+		
 		
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -90,12 +93,16 @@ public class LoginRegisterServlet extends HttpServlet {
 		client.setTelephone(telephone);
 		client.setEmail(email);
 		
+		
 		user.setLogin(username);
 		user.setPassword(password);
 		user.setRole(Role.Client);
 		
 		userDao.saveUser(user);
 		clientDao.saveClient(client);
+		System.out.println("ID USER : " +user.getId());
+	    
+	    
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
@@ -113,14 +120,21 @@ public class LoginRegisterServlet extends HttpServlet {
 			System.out.println("username" + user.getLogin());
 			System.out.println("role: " + user.getRole());
 			System.out.println("idUser: " + user.getId());
+			
+			
 
              if (user.getRole().name().equals("Client")) {
-            	session.setAttribute("user", user);
+            	Client client = new Client();
+            	session.setAttribute("client", user);
 				System.out.print("you are a client!!!");
-				request.getRequestDispatcher("/home.jsp").forward(request, response);
+				System.out.println("YOU ARE HERE : "+request.getServletPath());
+				session.setAttribute("client_nom", client.getNom());
+				request.getRequestDispatcher("homeClient.jsp").forward(request, response);
+				System.out.println("YOU ARE HERE : "+request.getServletPath());
+				
              }
              else if (user.getRole().name().equals("admin")) {
- 				session.setAttribute("user", user);
+ 				session.setAttribute("admin", user);
  				System.out.print("you are an admin ");
  				request.getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
              }
@@ -128,6 +142,7 @@ public class LoginRegisterServlet extends HttpServlet {
 		    else {
             	 request.getRequestDispatcher("/error-404.jsp").forward(request, response);
              }
+		    
 	}
 		    
 		}

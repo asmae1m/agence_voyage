@@ -43,7 +43,7 @@
                   <div class="form-group">
                     <label class="label">Password</label>
                     <div class="input-group">
-                      <input type="password" class="form-control" name="password" placeholder="*********">
+                      <input type="password" checked="checked" class="form-control" name="password" placeholder="*********">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>

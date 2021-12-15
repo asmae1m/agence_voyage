@@ -24,7 +24,9 @@
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
-  
+  <% if(session.getAttribute("admin")==null){ 
+        response.sendRedirect("login.jsp");} 
+   	 %>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
@@ -169,8 +171,9 @@
                 <a class="dropdown-item">Messages<i class="dropdown-item-icon ti-comment-alt"></i></a>
                 <a class="dropdown-item">Activity<i class="dropdown-item-icon ti-location-arrow"></i></a>
                 <a class="dropdown-item">FAQ<i class="dropdown-item-icon ti-help-alt"></i></a>
-                
-                <a class="dropdown-item" href="logout">Sign Out<i class="dropdown-item-icon ti-power-off"></i></a>
+                <form action="logout" method="post">
+                <button type="submit" class="dropdown-item">log out</button>
+                </form>
                 
               </div>
             </li>
@@ -439,7 +442,7 @@
                   <div class="card-body d-flex flex-column">
                     <div class="wrapper">
                       <h4 class="card-title mb-0">Net Profit Margin</h4>
-                      <p>Started collecting data from February 2019</p>
+                      <p> Started collecting data from February 2019 </p>
                       <div class="mb-4" id="net-profit-legend"></div>
                     </div>
                     <canvas class="my-auto mx-auto" height="250" id="net-profit"></canvas>

@@ -14,6 +14,12 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+      
+      <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+      <link rel="stylesheet" href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+      <link rel="stylesheet" href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+      <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+      <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.addons.css">
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -51,8 +57,8 @@
                         <div class="header_information">
                            <ul>
                               <li><img src="images/1.png" alt="#"/> 145.street road new York</li>
-                              <li><img src="images/2.png" alt="#"/> +71  5678954378</li>
-                              <li><img src="images/3.png" alt="#"/> Demo@hmail.com</li>
+                              <li><img src="images/2.png" alt="#"/> +212 707718122</li>
+                              <li><img src="images/3.png" alt="#"/> NotreAgence@hmail.com</li>
                            </ul>
                         </div>
                      </div>

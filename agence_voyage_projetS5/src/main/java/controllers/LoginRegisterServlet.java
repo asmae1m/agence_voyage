@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,15 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Role;
 import beans.*;
-import dao.IClientImplDAO;
-import dao.IUserImplDao;
+import dao.*;
+
 
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/homeAdmin"})
+@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherInfos"})
 public class LoginRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -43,7 +44,8 @@ public class LoginRegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
+		doPost(request,response);
+		
 	}
 
 	/**
@@ -54,6 +56,10 @@ public class LoginRegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
+		
+		if (request.getServletPath().equals("/afficherInfos")) {
+			request.getRequestDispatcher("infosPersos.jsp").forward(request, response);
+		}
 		
  
 	if (request.getServletPath().equals("/logout")) {
@@ -93,16 +99,13 @@ public class LoginRegisterServlet extends HttpServlet {
 		client.setTelephone(telephone);
 		client.setEmail(email);
 		
-		
 		user.setLogin(username);
 		user.setPassword(password);
 		user.setRole(Role.Client);
 		
 		userDao.saveUser(user);
+		client.setUser(user);
 		clientDao.saveClient(client);
-		System.out.println("ID USER : " +user.getId());
-	    
-	    
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
@@ -122,11 +125,15 @@ public class LoginRegisterServlet extends HttpServlet {
 			System.out.println("idUser: " + user.getId());
 			
 			
-
              if (user.getRole().name().equals("Client")) {
             	Client client = new Client();
             	session.setAttribute("client", user);
 				System.out.print("you are a client!!!");
+				
+				Client client1  = clientDao.getClientByUserId(userDao.getUserId(user.getLogin(), user.getPassword()));
+		        System.out.println("L'adresse de user avec ID:"+userDao.getUserId(user.getLogin(), user.getPassword())+ "est "+client1.getAdresse());
+		        session.setAttribute("client1", client1);
+				    
 				System.out.println("YOU ARE HERE : "+request.getServletPath());
 				session.setAttribute("client_nom", client.getNom());
 				request.getRequestDispatcher("homeClient.jsp").forward(request, response);
@@ -138,14 +145,132 @@ public class LoginRegisterServlet extends HttpServlet {
  				System.out.print("you are an admin ");
  				request.getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
              }
-		    }
+		   }
 		    else {
             	 request.getRequestDispatcher("/error-404.jsp").forward(request, response);
              }
-		    
-	}
-		    
+		 }
+	
+	if (request.getServletPath().equals("/ajoutVoyage")) {
+		
+		IVoyageImplDAO i=new IVoyageImplDAO();
+		IThemesImplDao t=new IThemesImplDao();
+		IActiviteeImplDao act=new IActiviteeImplDao();
+		IHebergementImplDao heb=new IHebergementImplDao();
+		Voyage voy =new Voyage();
+		
+		voy.setDestination(request.getParameter("destination"));
+		voy.setEndroit_depart(request.getParameter("depart"));
+		voy.setDate_arrivee(request.getParameter("date_arrive"));
+		voy.setDate_depart(request.getParameter("date_depart"));
+		voy.setDuree(request.getParameter("duree"));
+		voy.setPrix(Float.parseFloat(request.getParameter("prix")));
+		voy.setType_voyage(request.getParameter("type"));
+		
+		String[] themes = request.getParameterValues("themes");
+		String[] activitee = request.getParameterValues("activitee");
+		
+		int maison_hote=Integer.parseInt(request.getParameter("maison_hote"));
+		int chalet=Integer.parseInt(request.getParameter("chalet"));
+		int chambre_hotel=Integer.parseInt(request.getParameter("chambre_hotel"));
+		i.saveVoyage(voy);
+		for(int j=0;j<themes.length;j++) {
+			Theme e=new Theme();
+			e.setNom(themes[j]);
+			e.setVoyage(voy);
+			t.setTheme(e);
+			
 		}
+		for(int j=0;j<activitee.length;j++) {
+			Activite e=new Activite();
+			e.setNom(activitee[j]);
+			e.setVoyage(voy);
+			act.setActivitee(e);
+			
+		}
+		for(int j=0;j<chalet;j++) {
+			Hebergement e=new Hebergement();
+			e.setNom_hebergement("Chalet");
+			e.setVoyage(voy);
+			heb.setHeber(e);
+			
+		}
+		for(int j=0;j<maison_hote;j++) {
+			Hebergement e=new Hebergement();
+			e.setNom_hebergement("Maison d'hote");
+			e.setVoyage(voy);
+			heb.setHeber(e);
+			
+		}
+		for(int j=0;j<chambre_hotel;j++) {
+			Hebergement e=new Hebergement();
+			e.setNom_hebergement("Chambre hotel");
+			e.setVoyage(voy);
+			heb.setHeber(e);
+			
+		}
+		request.getRequestDispatcher("/ajoutVoyage.jsp").forward(request, response);
+		
+	}
+	if (request.getServletPath().equals("/ajouteVoyage")) {
+		
+		request.getRequestDispatcher("/ajoutVoyage.jsp").forward(request, response);
+	}
+	
+	if (request.getServletPath().equals("/supprimerVoy")) {
+		IVoyageImplDAO i=new IVoyageImplDAO();
+		int id_voy= Integer.parseInt(request.getParameter("id_voy"));
+		i.deleteVoyage(id_voy);
+		request.getRequestDispatcher("listVoyages").forward(request, response);
+	}
+	
+	if (request.getServletPath().equals("/listVoyages")) {
+		
+		IVoyageImplDAO i=new IVoyageImplDAO();
+		IThemesImplDao t=new IThemesImplDao();
+		IActiviteeImplDao act=new IActiviteeImplDao();
+		IHebergementImplDao heb=new IHebergementImplDao();
+		
+		ArrayList<Voyage> voy=new ArrayList<Voyage>();
+		
+		
+		voy = i.getVoyageList();
+		
+		for (int r=0;r<voy.size();r++) {
+			voy.get(r).setThemes(t.getThemesById(voy.get(r).getId()));
+			voy.get(r).setActivites(act.getActiviteById(voy.get(r).getId()));
+		}
+	    request.setAttribute("listVoyages", voy);
+	
+		request.getRequestDispatcher("/listVoyages.jsp").forward(request, response);
+	}
+if (request.getServletPath().equals("/modifierVoy")) {
+		
+		IVoyageImplDAO i=new IVoyageImplDAO();
+		int id_voy=Integer.parseInt(request.getParameter("id_voy"));
+		Voyage voy=i.getVoyage(id_voy);
+		
+		request.setAttribute("voy", voy);
+		request.setAttribute("id_voy", id_voy);
+		request.getRequestDispatcher("/modifierVoy.jsp").forward(request, response);
+	}
+	if (request.getServletPath().equals("/modifierVoyage")) {
+		
+		IVoyageImplDAO i=new IVoyageImplDAO();
+		int id_voy=Integer.parseInt(request.getParameter("id_voy"));
+		Voyage voya =i.getVoyage(id_voy);
+		voya.setDestination(request.getParameter("destination"));
+		voya.setEndroit_depart(request.getParameter("depart"));
+		voya.setDate_arrivee(request.getParameter("date_arrive"));
+		voya.setDate_depart(request.getParameter("date_depart"));
+		voya.setDuree(request.getParameter("duree"));
+		voya.setPrix(Float.parseFloat(request.getParameter("prix")));
+		i.updateVoyage(voya);
+		request.getRequestDispatcher("/listVoyages").forward(request, response);
+	}
+	
+		}
+	
 	}
 
 

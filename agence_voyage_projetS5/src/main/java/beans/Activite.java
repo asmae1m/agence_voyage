@@ -19,6 +19,14 @@ public class Activite {
 	@JoinColumn(name="voyage_id",referencedColumnName="id")
 	private Voyage voyage;
 	
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
+	}
+
 	public Activite() {
 		super();
 	}

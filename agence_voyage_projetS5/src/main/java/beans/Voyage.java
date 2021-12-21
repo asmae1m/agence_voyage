@@ -52,6 +52,38 @@ public class Voyage {
 	@OneToMany(mappedBy = "voyage")
 	private List<Theme> themes;
 	
+	public List<Panier> getPaniers() {
+		return paniers;
+	}
+
+	public void setPaniers(List<Panier> paniers) {
+		this.paniers = paniers;
+	}
+
+	public List<Activite> getActivites() {
+		return activites;
+	}
+
+	public void setActivites(List<Activite> activites) {
+		this.activites = activites;
+	}
+
+	public List<Theme> getThemes() {
+		return themes;
+	}
+
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
+	}
+
+	public List<Hebergement> getHebergements() {
+		return hebergements;
+	}
+
+	public void setHebergements(List<Hebergement> hebergements) {
+		this.hebergements = hebergements;
+	}
+
 	@OneToMany(mappedBy = "voyage")
 	private List<Hebergement> hebergements;
 	

@@ -31,7 +31,7 @@ public class Client {
 	@Column(name = "email")
 	private String email;
 	
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
 	

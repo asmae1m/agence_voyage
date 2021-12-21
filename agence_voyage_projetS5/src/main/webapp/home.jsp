@@ -73,7 +73,7 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li class="active"> <a href="#">Home</a> </li>
+                                 <li class="active"> <a href="#">Trouver</a> </li>
                                  <li> <a href="#about">About</a> </li>
                                  <li><a href="#travel">Travel</a></li>
                                  <li><a href="#blog">Blog</a></li>
@@ -386,18 +386,23 @@
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                      <div class="Follow">
                         <h3> Contact</h3>
+                        <form action="sendEmail" method="post">
                         <div class="row">
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                              <input class="Newsletter" placeholder="Name" type="text">
+                              <input class="Newsletter" name="subjet" placeholder="Sujet" type="text">
                            </div>
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                              <input class="Newsletter" placeholder="Email" type="text">
+                              <input class="Newsletter" name="email" placeholder="Email" type="text">
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                              <input class="Newsletter" name="password" placeholder="code de votre adresse gmail" type="password">
                            </div>
                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <textarea class="textarea" placeholder="comment" type="text">Comment</textarea>
+                              <textarea class="textarea" name="commentaire" placeholder="commentaire" type="text">Commentaire</textarea>
                            </div>
                         </div>
                         <button class="Subscribe">Submit</button>
+                        </form>
                      </div>
                   </div>
                </div>

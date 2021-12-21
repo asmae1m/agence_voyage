@@ -52,5 +52,8 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.26.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/stax-ex-1.8.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/txw2-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ASMAE/git/agence_voyage/agence_voyage_projetS5/src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ASMAE/git/agence_voyage/agence_voyage_projetS5/src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

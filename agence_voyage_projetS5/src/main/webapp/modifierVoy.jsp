@@ -24,9 +24,7 @@
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
-  <% if(session.getAttribute("admin")==null){ 
-        response.sendRedirect("login.jsp");} 
-   	 %>
+  
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
@@ -41,13 +39,13 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Ajout de voyage</h4>
-                    <form class="form-sample" action="ajoutVoyage" method="POST">
+                    <form class="form-sample" action="modifierVoyage?id_voy=${ id_voy }" method="POST">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Destination</label>
                             <div class="col-sm-9">
-                              <input type="text" name="destination" class="form-control" />
+                              <input type="text" name="destination" value="${ voy.getDestination() }" class="form-control" />
                             </div>
                           </div>
                         </div>
@@ -55,7 +53,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Endroit de depart</label>
                             <div class="col-sm-9">
-                              <input type="text" name="depart" class="form-control" />
+                              <input type="text" name="depart" value="${ voy.getEndroit_depart() }" class="form-control" />
                             </div>
                           </div>
                         </div>
@@ -65,7 +63,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Date de depart</label>
                             <div class="col-sm-9">
-                              <input placeholder="dd/mm/yyyy" type="date" name="date_depart" class="form-control" />
+                              <input placeholder="dd/mm/yyyy" type="date" value="${ voy.getDate_depart() }" name="date_depart" class="form-control" />
                             </div>
                           </div>
                         </div>
@@ -73,7 +71,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Date de retour</label>
                             <div class="col-sm-9">
-                              <input class="form-control" type="date" name="date_arrive" placeholder="dd/mm/yyyy" />
+                              <input class="form-control" type="date" value="${ voy.getDate_arrivee() }" name="date_arrive" placeholder="dd/mm/yyyy" />
                             </div>
                           </div>
                         </div>
@@ -83,7 +81,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Duree du voyage</label>
                             <div class="col-sm-9">
-                              <input class="form-control"  name="duree" placeholder="jours" />
+                              <input class="form-control" value="${ voy.getDuree() }" name="duree" placeholder="jours" />
                             </div>
                           </div>
                         </div>
@@ -91,7 +89,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Type de voyage</label>
                             <div class="col-sm-9">
-                              <select class="form-control" name="type">
+                              <select class="form-control" disabled>
                                 <option>Circuit accompagné</option>
                                 <option>Voyage en individuel</option>
                               </select>
@@ -106,69 +104,16 @@
                             <div class="input-group-prepend bg-primary border-primary">
                               <span class="input-group-text bg-transparent text-white">$</span>
                             </div>
-                            <input name="prix" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            <input name="prix" value="${voy.getPrix()}" class="form-control" aria-label="Amount (to the nearest dollar)">
                             <div class="input-group-append bg-primary border-primary">
-                              <span class="input-group-text bg-transparent text-white">.00</span>
+                              <span class="input-group-text bg-transparent text-white">.00</span><br>
                             </div>
                           </div>
                         </div>
                       </div>
                       
-                    <p class="card-description"><br/>Thèmes</p>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Haute-montagne" class="form-check-input"> Haute-montagne </label>
-                            </div>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Croisières" class="form-check-input"> Croisières </label>
-                            </div>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Terres polaires" class="form-check-input"> Terres polaires </label>
-                            </div>
-                            
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Aventures" class="form-check-input"> Aventures </label>
-                            </div>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Voyage neige" class="form-check-input"> Voyage neige </label>
-                            </div>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" name="themes" value="Chemins de St-Jaques" class="form-check-input"> Chemins de St-Jaques </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Membership</label>
-                            <div class="col-sm-4">
-                              <div class="form-radio">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Free </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-5">
-                              <div class="form-radio">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Professional </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <button type="submit">ajouter</button>
+                    
+                        <button type="submit">modifier</button>
                     </form>
                   </div>
                 </div>

@@ -1,10 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.lang.Object;
 
 
 import org.hibernate.Session;
@@ -26,6 +28,7 @@ public class IUserImplDao implements IUserDao{
             transaction = session.beginTransaction();
             // save the User object
             session.save(user);
+            
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
@@ -43,12 +46,14 @@ public class IUserImplDao implements IUserDao{
 		return user;
 	}
 	
+	
 	public void deleteUser(int id) {
 		User user = getUserById(id);
 		session.beginTransaction();
 		session.delete(user);
 		session.getTransaction().commit();
    }
+	
 	public User getUser(String username, String password) {
 		Connection conexion=DAOFACTORY.getConnection();
 		User p=new User();
@@ -76,7 +81,6 @@ public class IUserImplDao implements IUserDao{
 		session.beginTransaction();
 		session.update(user);
 		session.getTransaction().commit();
-
 			
 	}
 	public boolean login(String username,String password) {
@@ -97,13 +101,29 @@ public class IUserImplDao implements IUserDao{
 		}
 		return b;
 	}
-	public int getId(User user) {		
-		Integer id = (Integer)session.save(user);
-		System.out.println("ID USER EST : "+id);
-		return id;
+	
+
+		public int getUserId(String username, String password) {
+			Connection conexion=DAOFACTORY.getConnection();
+			User p=new User();
+			try {
+				PreparedStatement ps = conexion.prepareStatement(
+						"select id from user where username=? and password=? ");
+				ps.setString(1, username);
+				ps.setString(2, password);
+				 ResultSet rs = ps.executeQuery();
+					if(rs.next()){
+						p.setId(Integer.parseInt(rs.getString("id")));
+					}			
+				ps.close();
+				System.out.println("query executed");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return p.getId();
+		}
 		
-	}
-	
-	
+		
 }
+
 

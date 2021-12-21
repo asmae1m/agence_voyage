@@ -6,6 +6,7 @@ import beans.*;
 
 public interface IUserDao {
 	
+	
 	public void saveUser(User user);
 	public List<User> getUserList();
 	public User getUserById(int id);

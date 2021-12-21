@@ -17,6 +17,12 @@ public class Theme {
 	@JoinColumn(name="voyage_id",referencedColumnName="id")
 	private Voyage voyage;
 	
+	public Voyage getVoyage() {
+		return voyage;
+	}
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
+	}
 	public Theme() {
 		super();
 		// TODO Auto-generated constructor stub

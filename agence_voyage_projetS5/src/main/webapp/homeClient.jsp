@@ -83,7 +83,7 @@
                            <nav class="main-menu">
                               <ul class="menu-area-main">
                                  <li class="active"> <a href="#">trouver</a> </li>
-                                 <li><a href="#travel">Travel</a></li>
+                                 <li><a href="#travel">Activités</a></li>
                                  <li><a href="#contact">Contact Us</a></li>
                                  <li><a href="afficherVoyages">Nos offres</a></li>
                                 

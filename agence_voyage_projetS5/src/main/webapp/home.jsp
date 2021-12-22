@@ -75,7 +75,7 @@
                               <ul class="menu-area-main">
                                  <li class="active"> <a href="#">Trouver</a> </li>
                                  <li> <a href="#about">About</a> </li>
-                                 <li><a href="#travel">Travel</a></li>
+                                 <li><a href="#travel">Activités</a></li>
                                  <li><a href="#blog">Blog</a></li>
                                  <li><a href="#contact">Contact Us</a></li>
                                  <li><a href="register.jsp">Sign Up</a></li>

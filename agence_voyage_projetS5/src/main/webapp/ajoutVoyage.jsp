@@ -63,7 +63,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Date de depart</label>
                             <div class="col-sm-9">
-                              <input placeholder="dd/mm/yyyy" type="date" name="date_depart" class="form-control" />
+                              <input placeholder="dd/mm/yyyy" type="date" min="<%= new java.sql.Date(System.currentTimeMillis()) %>"name="date_depart" class="form-control" />
                             </div>
                           </div>
                         </div>
@@ -71,7 +71,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Date de retour</label>
                             <div class="col-sm-9">
-                              <input class="form-control" type="date" name="date_arrive" placeholder="dd/mm/yyyy" />
+                              <input class="form-control" type="date" min="<%= new java.sql.Date(System.currentTimeMillis()) %>" name="date_arrive" placeholder="dd/mm/yyyy" />
                             </div>
                           </div>
                         </div>

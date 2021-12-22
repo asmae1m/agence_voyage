@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import org.hibernate.jpa.criteria.expression.function.CurrentDateFunction;
+import org.hibernate.type.LocalDateTimeType;
 
 import beans.*;
 import dao.*;
@@ -232,7 +237,9 @@ public class LoginRegisterServlet extends HttpServlet {
 	    voy = i.getVoyageList();
 	
 	    request.setAttribute("list", voy);
+	    
 	 
+	
 		request.getRequestDispatcher("/contacts.jsp").forward(request, response);
 	}
 	

@@ -28,6 +28,20 @@
       <!-- owl stylesheets --> 
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      
+      <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+      <link rel="stylesheet" href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+      <link rel="stylesheet" href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+      <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+      <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.addons.css">
+      <!-- endinject -->
+      <!-- inject:css -->
+      <link rel="stylesheet" href="assets/css/shared/style.css">
+      <!-- endinject -->
+      <!-- Layout styles -->
+      <link rel="stylesheet" href="assets/css/demo_1/style.css">
+      <!-- End Layout styles -->
+      <link rel="shortcut icon" href="assets/images/favicon.ico" />
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -50,9 +64,9 @@
                      <div class="col-md-12">
                         <div class="header_information">
                            <ul>
-                              <li><img src="images/1.png" alt="#"/> 145.street road new York</li>
-                              <li><img src="images/2.png" alt="#"/> +71  5678954378</li>
-                              <li><img src="images/3.png" alt="#"/> Demo@hmail.com</li>
+                              <li><img src="images/1.png" alt="#"/> Présidence Moulay Ismail</li>
+                              <li><img src="images/2.png" alt="#"/> +212 707718122</li>
+                              <li><img src="images/3.png" alt="#"/> notreagencebgi@hmail.com</li>
                            </ul>
                         </div>
                      </div>
@@ -77,7 +91,7 @@
                                  <li> <a href="#about">About</a> </li>
                                  <li><a href="#travel">Activités</a></li>
                                  <li><a href="#blog">Blog</a></li>
-                                 <li><a href="#contact">Contact Us</a></li>
+                                 <li><a href="afficherVoyages">Nos offres</a></li>
                                  <li><a href="register.jsp">Sign Up</a></li>
                                  <li><a href="login.jsp">Sign In</a></li>
                               </ul>
@@ -96,7 +110,7 @@
             <img src="images/banner.jpg" alt="#"/>
             <div class="container">
                <div class="text-bg">
-                  <h1>America<br><strong class="white">Amazing Tour</strong></h1>
+                  <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
                   <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
                   <div class="container">
                      <form class="main-form">
@@ -179,58 +193,114 @@
          <div class="container">
             <div class="row">
                <div class="col-md-12 ">
-                  <div class="titlepage">
-                     <h2>Select Offers For Traveling</h2>
-                     <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
-                  </div>
+                  
                </div>
             </div>
             <div class="row">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="traveling-box">
                      <i><img src="icon/travel-icon.png" alt="icon"/></i>
-                     <h3>Different Countrys</h3>
-                     <p> going to use a passage of Lorem Ipsum, you need to be </p>
-                     <div class="read-more">
-                        <a  href="#">Read More</a>
-                     </div>
+                     <h3>Randonnée et Trek</h3>
+                     
+                     <div class="template-demo">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+                          
+                          <a class="dropdown-item" href="#">Randonnée</a>
+                          <a class="dropdown-item" href="#">Trek</a>
+                          
+                        </div>
+                      </div>
+                  </div>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="traveling-box">
                      <i><img src="icon/travel-icon2.png" alt="icon"/></i>
-                     <h3>Mountains Tours</h3>
-                     <p> going to use a passage of Lorem Ipsum, you need to be </p>
-                     <div class="read-more">
-                        <a  href="#">Read More</a>
-                     </div>
+                     <h3>Découverte d'animaux</h3>
+                     
+                     <div class="template-demo">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus  </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+                          
+                          <a class="dropdown-item" href="#">Safari</a>
+                          <a class="dropdown-item" href="#">Observations animaux</a>
+                          
+                        </div>
+                      </div>
+                  </div>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="traveling-box">
                      <i><img src="icon/travel-icon3.png" alt="icon"/></i>
-                     <h3>Bus Tours</h3>
-                     <p> going to use a passage of Lorem Ipsum, you need to be </p>
-                     <div class="read-more">
-                        <a  href="#">Read More</a>
-                     </div>
+                     <h3>Activités neige</h3>
+                   
+                     <div class="template-demo">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+                          
+                          <a class="dropdown-item" href="#">Ski de fond / ski nordique</a>
+                          <a class="dropdown-item" href="#">Ski de randonnée / Freeride</a>
+                          <a class="dropdown-item" href="#">Traineau à chiens</a>
+                          
+                        </div>
+                      </div>
+                  </div>
                   </div>
                </div>
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="traveling-box">
-                     <i><img src="icon/travel-icon4.png" alt="icon"/></i>
-                     <h3>Summer Rest</h3>
-                     <p> going to use a passage of Lorem Ipsum, you need to be </p>
-                     <div class="read-more">
-                        <a  href="#">Read More</a>
-                     </div>
+                     <i><img src="icon/travel-icon2.png" alt="icon"/></i>
+                     <h3>Activités de montagne</h3>
+                   
+                     <div class="template-demo">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+                         
+                          <a class="dropdown-item" href="#">Alpinisme</a>
+                          
+                        </div>
+                      </div>
+                  </div>
                   </div>
                </div>
-            </div>
+             <div class="col-4 grid-margin stretch-card">
+                   
+                  </div>
+               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                  <div class="traveling-box">
+                     <i><img src="icon/travel-icon.png" alt="icon"/></i>
+                     <h3>Autres activités</h3>
+                    
+                     <div class="template-demo">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
+
+                          <a class="dropdown-item" href="#">Vélo</a>
+                          <a class="dropdown-item" href="#">Kayak et canoe</a>
+                          <a class="dropdown-item" href="#">Découverte</a>
+                         
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+               </div>
+               <br>
+               
+               <br>
+               
          </div>
       </div>
       <!-- end traveling -->
       <!--London -->
+      <br>
+      <br>
       <div class="London">
          <div class="container">
             <div class="row">

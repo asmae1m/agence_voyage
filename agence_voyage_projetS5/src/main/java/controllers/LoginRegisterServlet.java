@@ -229,7 +229,7 @@ public class LoginRegisterServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/ajoutVoyage.jsp").forward(request, response);
 	}
-	
+
     if (request.getServletPath().equals("/afficherVoyages")) {
 		
     	IVoyageImplDAO i=new IVoyageImplDAO();

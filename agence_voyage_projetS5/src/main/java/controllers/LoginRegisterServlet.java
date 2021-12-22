@@ -228,21 +228,11 @@ public class LoginRegisterServlet extends HttpServlet {
     if (request.getServletPath().equals("/afficherVoyages")) {
 		
     	IVoyageImplDAO i=new IVoyageImplDAO();
-		IThemesImplDao t=new IThemesImplDao();
-		IActiviteeImplDao act=new IActiviteeImplDao();
-		IHebergementImplDao heb=new IHebergementImplDao();
-		
 		ArrayList<Voyage> voy=new ArrayList<Voyage>();
-		
-		
-		voy = i.getVoyageList();
-		
-		for (int r=0;r<voy.size();r++) {
-			voy.get(r).setThemes(t.getThemesById(voy.get(r).getId()));
-			voy.get(r).setActivites(act.getActiviteById(voy.get(r).getId()));
-		}
+	    voy = i.getVoyageList();
+	
 	    request.setAttribute("list", voy);
-    	
+	 
 		request.getRequestDispatcher("/contacts.jsp").forward(request, response);
 	}
 	
@@ -283,6 +273,7 @@ public class LoginRegisterServlet extends HttpServlet {
 		request.setAttribute("id_voy", id_voy);
 		request.getRequestDispatcher("/modifierVoy.jsp").forward(request, response);
 	}
+    
 	if (request.getServletPath().equals("/modifierVoyage")) {
 		
 		IVoyageImplDAO i=new IVoyageImplDAO();

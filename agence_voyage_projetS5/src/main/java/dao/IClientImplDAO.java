@@ -137,10 +137,10 @@ public void saveUserId(int user_id) {
     		}
     		return p;
     	}
-    	public void updateClient(Client client) {
-    		
+    	public void updateClient(Client client2) {
+    		session = HibernateUtil.getSessionFactory().openSession();
     		session.beginTransaction();
-    		session.update(client);
+    		session.update(client2);
     		session.getTransaction().commit();
     		session.close();
     			
@@ -170,8 +170,6 @@ public void saveUserId(int user_id) {
 			}
 			return client.getId();
 		}
-    	
-    	
 }
 	
 

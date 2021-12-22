@@ -16,7 +16,7 @@ import dao.IUserImplDao;
 /**
  * Servlet implementation class ModifClient
  */
-@WebServlet(urlPatterns = {"/ModifClient","/modifierInfos","/editInfos"})
+@WebServlet(urlPatterns = {"/ModifClient","/modifierInfos","/editInfos","/afficherInfos"})
 public class ModifClient extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	IUserImplDao userDao = new IUserImplDao();
@@ -36,9 +36,7 @@ public class ModifClient extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-			dispatcher.forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -46,7 +44,12 @@ public class ModifClient extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+        if (request.getServletPath().equals("/afficherInfos")) {
+			
+			request.getRequestDispatcher("/infosPersos.jsp").forward(request, response);
+		}
 		
 		if (request.getServletPath().equals("/modifierInfos")) {
  	    	
@@ -89,8 +92,12 @@ public class ModifClient extends HttpServlet {
  	    	
  	    	clientDao.updateClient(client);
  	    	System.out.println("CLIENT UPDATED");
+ 	    
+ 	    	
+ 	    	response.sendRedirect("/agence_voyage_projetS5/afficherInfos");
  	    	 	   
  		}
+		
 	}
 
 }

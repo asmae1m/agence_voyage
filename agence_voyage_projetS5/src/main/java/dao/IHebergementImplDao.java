@@ -12,13 +12,15 @@ import beans.Theme;
 import util.HibernateUtil;
 
 public class IHebergementImplDao implements IHebergementDao {
-	private static Session session = HibernateUtil.getSessionFactory().openSession();
+	private static Session session ;
 	@Override
 	public void setHeber(Hebergement h) {
 		// TODO Auto-generated method stub
+		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(h);
 		session.getTransaction().commit();
+		session.close();
 	}
 	public ArrayList<Hebergement> getHebergementById(int voyageId){
 		Connection conexion=DAOFACTORY.getConnection();
@@ -42,12 +44,16 @@ public class IHebergementImplDao implements IHebergementDao {
 	}
 	public void deleteHeber(int id) {
 		Hebergement voyage  = getHeber(id);
+		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.delete(voyage);
 		session.getTransaction().commit();
+		session.close();
     }
 	public Hebergement getHeber(int id) {
+		session = HibernateUtil.getSessionFactory().openSession();
 		Hebergement voyage = session.find(Hebergement.class, id);
+		session.close();
 		return voyage;
 	}
 }

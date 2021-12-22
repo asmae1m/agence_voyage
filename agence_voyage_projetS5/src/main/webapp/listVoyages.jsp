@@ -37,7 +37,7 @@
         <!-- partial -->
         <div class="main-panel">
         <div class="col-12 grid-margin">
-                <div class="col-lg-12 grid-margin stretch-card">
+           <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">List Voyages<br></h4>
@@ -58,8 +58,8 @@
                       <tbody id="myMenu">
                       <c:forEach items="${listVoyages}" var="voy">
                         <tr >
-                          <td class="py-1">
-                            <img src=https://www.terdav.com/Content/img/Produits/Cartes_V5/fin071-C02.jpg alt="image" />
+                          <td>
+                          <img src="data:image/jpg;base64, ${voy.base64Image}" width="240" height="300"/>
                           </td>
                           <td> ${ voy.getDestination() } </td>
                           <td>${ voy.getDate_depart() }

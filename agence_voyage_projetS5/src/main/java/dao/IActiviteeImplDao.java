@@ -13,14 +13,14 @@ import beans.Theme;
 import util.HibernateUtil;
 
 public class IActiviteeImplDao implements IActiviteeDao {
-	
-	private static Session session = HibernateUtil.getSessionFactory().openSession();
-	
+	private static Session session ;
 	public void setActivitee(Activite a) {
 		// TODO Auto-generated method stub
+		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
+		session.close();
 	}
 	public List<Activite> getActiviteById(int voyageId){
 		
@@ -45,12 +45,16 @@ public class IActiviteeImplDao implements IActiviteeDao {
 	}
 	public void deleteAct(int id) {
 		Activite voyage  = getActivite(id);
+		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.delete(voyage);
 		session.getTransaction().commit();
+		session.close();
     }
 	public Activite getActivite(int id) {
+		session = HibernateUtil.getSessionFactory().openSession();
 		Activite voyage = session.find(Activite.class, id);
+		session.close();
 		return voyage;
 	}
 }

@@ -14,10 +14,14 @@ import beans.Voyage;
 import dao.IVoyageDAO;
 import util.HibernateUtil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class IVoyageImplDAO implements IVoyageDAO{
@@ -67,6 +71,25 @@ public class IVoyageImplDAO implements IVoyageDAO{
 					v.setDate_depart(rs.getString("date_depart"));
 					v.setPrix(rs.getFloat("prix"));
 					v.setType_voyage(rs.getString("type_voyage"));
+					v.setDuree(rs.getString("duree"));
+					v.setEndroit_depart(rs.getString("endroit_depart"));
+					Blob blob = rs.getBlob("image");
+	                 
+	                InputStream inputStream = blob.getBinaryStream();
+	                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	                byte[] buffer = new byte[4096];
+	                int bytesRead = -1;
+	                 
+	                while ((bytesRead = inputStream.read(buffer)) != -1) {
+	                    outputStream.write(buffer, 0, bytesRead);                  
+	                }
+	                 
+	                byte[] imageBytes = outputStream.toByteArray();
+	                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+	                v.setBase64Image(base64Image);
+	                
+	                inputStream.close();
+	                outputStream.close();
 					i.add(v);
 				}			
 			ps.close();
@@ -92,6 +115,23 @@ public class IVoyageImplDAO implements IVoyageDAO{
 					i.setDuree(rs.getString("duree"));
 					i.setPrix(rs.getFloat("prix"));
 					i.setType_voyage(rs.getString("type_voyage"));
+					Blob blob = rs.getBlob("image");
+	                 
+	                InputStream inputStream = blob.getBinaryStream();
+	                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	                byte[] buffer = new byte[4096];
+	                int bytesRead = -1;
+	                 
+	                while ((bytesRead = inputStream.read(buffer)) != -1) {
+	                    outputStream.write(buffer, 0, bytesRead);                  
+	                }
+	                 
+	                byte[] imageBytes = outputStream.toByteArray();
+	                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+	                i.setBase64Image(base64Image);
+	                 
+	                inputStream.close();
+	                outputStream.close();
 				}			
 			ps.close();
 		} catch (Exception e) {

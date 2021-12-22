@@ -199,7 +199,7 @@
             </li>
             <li class="nav-item nav-category">Main Menu</li>
             <li class="nav-item">
-              <a class="nav-link" href="infosPersos.jsp">
+              <a class="nav-link" href="afficherInfos">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Vos infos</span>
               </a>
@@ -245,7 +245,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Vos informations personnelles</h4>
-                    <form class="class-form" method="POST" >
+                    <form action="afficherInfos" class="class-form" method="POST" >
                         
                    
                       <div class="row">

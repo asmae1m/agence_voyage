@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import beans.*;
 import dao.*;
@@ -24,10 +27,11 @@ import dao.*;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherInfos"})
+@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherVoyages"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class LoginRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	HttpSession session;
 	IUserImplDao userDao = new IUserImplDao();
 	IClientImplDAO clientDao = new IClientImplDAO();
        
@@ -55,11 +59,8 @@ public class LoginRegisterServlet extends HttpServlet {
 		
 		// TODO Auto-generated method stub
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		
-		if (request.getServletPath().equals("/afficherInfos")) {
-			request.getRequestDispatcher("infosPersos.jsp").forward(request, response);
-		}
 		
  
 	if (request.getServletPath().equals("/logout")) {
@@ -152,13 +153,20 @@ public class LoginRegisterServlet extends HttpServlet {
 		 }
 	
 	if (request.getServletPath().equals("/ajoutVoyage")) {
-		
+		InputStream inputStream1=null;
 		IVoyageImplDAO i=new IVoyageImplDAO();
 		IThemesImplDao t=new IThemesImplDao();
 		IActiviteeImplDao act=new IActiviteeImplDao();
 		IHebergementImplDao heb=new IHebergementImplDao();
 		Voyage voy =new Voyage();
-		
+		Part filePart1 = request.getPart("image");
+		if (filePart1 != null ) {
+
+			System.out.println(filePart1.getName());
+
+			inputStream1 = filePart1.getInputStream();
+			
+		}
 		voy.setDestination(request.getParameter("destination"));
 		voy.setEndroit_depart(request.getParameter("depart"));
 		voy.setDate_arrivee(request.getParameter("date_arrive"));
@@ -166,7 +174,7 @@ public class LoginRegisterServlet extends HttpServlet {
 		voy.setDuree(request.getParameter("duree"));
 		voy.setPrix(Float.parseFloat(request.getParameter("prix")));
 		voy.setType_voyage(request.getParameter("type"));
-		
+		voy.setImage(inputStream1.readAllBytes());
 		String[] themes = request.getParameterValues("themes");
 		String[] activitee = request.getParameterValues("activitee");
 		
@@ -217,6 +225,27 @@ public class LoginRegisterServlet extends HttpServlet {
 		request.getRequestDispatcher("/ajoutVoyage.jsp").forward(request, response);
 	}
 	
+    if (request.getServletPath().equals("/afficherVoyages")) {
+		
+    	IVoyageImplDAO i=new IVoyageImplDAO();
+		IThemesImplDao t=new IThemesImplDao();
+		IActiviteeImplDao act=new IActiviteeImplDao();
+		IHebergementImplDao heb=new IHebergementImplDao();
+		
+		ArrayList<Voyage> voy=new ArrayList<Voyage>();
+		
+		
+		voy = i.getVoyageList();
+		
+		for (int r=0;r<voy.size();r++) {
+			voy.get(r).setThemes(t.getThemesById(voy.get(r).getId()));
+			voy.get(r).setActivites(act.getActiviteById(voy.get(r).getId()));
+		}
+	    request.setAttribute("list", voy);
+    	
+		request.getRequestDispatcher("/contacts.jsp").forward(request, response);
+	}
+	
 	if (request.getServletPath().equals("/supprimerVoy")) {
 		IVoyageImplDAO i=new IVoyageImplDAO();
 		int id_voy= Integer.parseInt(request.getParameter("id_voy"));
@@ -244,7 +273,7 @@ public class LoginRegisterServlet extends HttpServlet {
 	
 		request.getRequestDispatcher("/listVoyages.jsp").forward(request, response);
 	}
-if (request.getServletPath().equals("/modifierVoy")) {
+    if (request.getServletPath().equals("/modifierVoy")) {
 		
 		IVoyageImplDAO i=new IVoyageImplDAO();
 		int id_voy=Integer.parseInt(request.getParameter("id_voy"));
@@ -272,11 +301,3 @@ if (request.getServletPath().equals("/modifierVoy")) {
 		}
 	
 	}
-
-
-
-
-
-	
-
-

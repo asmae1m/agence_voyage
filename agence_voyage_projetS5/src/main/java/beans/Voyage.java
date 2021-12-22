@@ -1,9 +1,13 @@
 package beans;
 
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
 
 
 import javax.persistence.*;
+
+
 
 @Entity
 @Table(name = "Voyage")
@@ -34,7 +38,28 @@ public class Voyage {
 	
 	@Column(name = "type_voyage")
 	private String type_voyage;
-	
+	 
+	 
+    @Column(name = "image" , columnDefinition = "LONGBLOB")
+    private byte[] image; 
+    
+    public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public byte[] getImage() {
+        return this.image;
+    }
+ 
+    private String base64Image;
+     
+    public String getBase64Image() {
+        return base64Image;
+    }
+ 
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
+    }
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(

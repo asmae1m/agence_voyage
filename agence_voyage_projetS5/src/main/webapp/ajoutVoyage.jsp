@@ -39,7 +39,7 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Ajout de voyage</h4>
-                    <form class="form-sample" action="ajoutVoyage" method="POST">
+                    <form class="form-sample" action="ajoutVoyage" method="POST" enctype="multipart/form-data">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
@@ -234,6 +234,17 @@
                             <label class="col-sm-3 col-form-label">Chalet</label>
                             <div class="col-sm-9">
                               <input type="text" name="chalet" value="0" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Image du voyage</label>
+                            <div class="col-sm-9">
+                              <input type="file" id="avatar" name="image"
+												accept=".png, .jpg, .jpeg" placeholder="photo">
                             </div>
                           </div>
                         </div>

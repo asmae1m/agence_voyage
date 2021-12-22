@@ -85,7 +85,7 @@
                                  <li class="active"> <a href="#">trouver</a> </li>
                                  <li><a href="#travel">Travel</a></li>
                                  <li><a href="#contact">Contact Us</a></li>
-                                 <li><a href="register.jsp">Nos offres</a></li>
+                                 <li><a href="afficherVoyages">Nos offres</a></li>
                                 
                                  <li><a href="infosPersos.jsp">Vos informations</a></li>
                                  
@@ -649,7 +649,7 @@
                               <input class="Newsletter" name="email" placeholder="Email" type="text">
                            </div>
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                              <input class="Newsletter" name="password" placeholder="Email" type="password">
+                              <input class="Newsletter" name="password" placeholder="mot de passe de votre email" type="password">
                            </div>
                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                               <textarea class="textarea" name="commentaire" placeholder="commentaire" type="text">Commentaire</textarea>

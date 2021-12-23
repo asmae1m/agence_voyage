@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import javax.servlet.http.HttpSession;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,6 +45,8 @@ public class ModifClient extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session;
+		session = request.getSession();
 		
 		
         if (request.getServletPath().equals("/afficherInfos")) {
@@ -91,10 +94,10 @@ public class ModifClient extends HttpServlet {
  	    	client.setEmail(email);
  	    	
  	    	clientDao.updateClient(client);
+ 	    	session.setAttribute("client3",client);
  	    	System.out.println("CLIENT UPDATED");
  	    
- 	    	
- 	    	response.sendRedirect("/agence_voyage_projetS5/afficherInfos");
+ 	    	response.sendRedirect("infosPersos2.jsp");
  	    	 	   
  		}
 		

@@ -244,7 +244,7 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Vos informations personnelles</h4>
+                    <h4 class="card-title">Vos modifications ont été sauvegardées!!</h4>
                     <form action="afficherInfos" class="class-form" method="POST" >
                         
                    
@@ -253,7 +253,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label" >identifiant : </label>
                             <div class="col-sm-9">
-                           <input class="form-control" disabled="disabled" value='${client1.id}'>
+                           <input class="form-control" disabled="disabled" value='${client3.id}'>
                             </div>
                          
                           </div>
@@ -262,7 +262,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Adresse</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled" name="adresse" value='${client1.adresse}' required="required">
+                              <input class="form-control" disabled="disabled" name="adresse" value='${client3.adresse}' required="required">
                             </div>
                           </div>
                         </div>
@@ -273,7 +273,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nationalité</label>
                             <div class="col-sm-9">
-                               <input class="form-control" disabled="disabled" name="nationalite" value='${client1.nationalite}'>
+                               <input class="form-control" disabled="disabled" name="nationalite" value='${client3.nationalite}'>
                             </div>
                           </div>
                         </div>
@@ -281,7 +281,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nom</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled" name="nom" value='${client1.nom}'>
+                              <input class="form-control" disabled="disabled" name="nom" value='${client3.nom}'>
                             </div>
                           </div>
                         </div>
@@ -291,7 +291,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Prénom</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled"name="prenom" value='${client1.prenom}'>
+                              <input class="form-control" disabled="disabled"name="prenom" value='${client3.prenom}'>
                             </div>
                           </div>
                         </div>
@@ -299,7 +299,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">N°telephone</label>
                             <div class="col-sm-9">
-                             <input class="form-control" disabled="disabled" name="telephone" value='${client1.telephone}'>
+                             <input class="form-control" disabled="disabled" name="telephone" value='${client3.telephone}'>
                             </div>
                           </div>
                         </div>
@@ -309,7 +309,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Code Postal</label>
                             <div class="col-sm-9">
-                              <input class="form-control"  name="codePostal" value='${client1.codePostal}'>
+                              <input class="form-control" disabled="disabled" name="codePostal" value='${client3.codePostal}'>
                             </div>
                           </div>
                         </div>
@@ -318,7 +318,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                               <input class="form-control" disabled="disabled" name="email" value='${client1.email}'>
+                               <input class="form-control" disabled="disabled" name="email" value='${client3.email}'>
                           </div>
                         </div>
                       </div>

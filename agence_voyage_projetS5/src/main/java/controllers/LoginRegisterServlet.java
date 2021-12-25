@@ -265,7 +265,12 @@ public class LoginRegisterServlet extends HttpServlet {
 		IHebergementImplDao heb=new IHebergementImplDao();
 		
 		ArrayList<Voyage> voy=new ArrayList<Voyage>();
-		
+		try {
+			i.deleteOldTravels();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		voy = i.getVoyageList();
 		

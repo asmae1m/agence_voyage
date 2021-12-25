@@ -1,5 +1,6 @@
 package dao;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public interface IVoyageDAO {
 	public Voyage getVoyage(int id);
 	public void updateVoyage(Voyage voyage);
 	public void deleteVoyage(int id);
+	public void deleteOldTravels ()throws ParseException;
 	
 	
 	

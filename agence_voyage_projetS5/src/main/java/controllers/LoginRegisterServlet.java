@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class LoginRegisterServlet extends HttpServlet {
 	HttpSession session;
 	IUserImplDao userDao = new IUserImplDao();
 	IClientImplDAO clientDao = new IClientImplDAO();
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -112,6 +114,8 @@ public class LoginRegisterServlet extends HttpServlet {
 		userDao.saveUser(user);
 		client.setUser(user);
 		clientDao.saveClient(client);
+		
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
@@ -234,12 +238,15 @@ public class LoginRegisterServlet extends HttpServlet {
 		
     	IVoyageImplDAO i=new IVoyageImplDAO();
 		ArrayList<Voyage> voy=new ArrayList<Voyage>();
+		try {
+			i.deleteOldTravels();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    voy = i.getVoyageList();
 	
 	    request.setAttribute("list", voy);
-	    
-	 
-	
 		request.getRequestDispatcher("/contacts.jsp").forward(request, response);
 	}
 	

@@ -3,6 +3,7 @@ package dao;
 import org.hibernate.Session;
 
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -25,6 +26,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat; 
 
 public class IVoyageImplDAO implements IVoyageDAO{
 	private static Session session ;
@@ -180,6 +185,18 @@ public class IVoyageImplDAO implements IVoyageDAO{
 		session.update(voyage);
 		session.getTransaction().commit();
 		session.close();
+	}
+	
+	public void deleteOldTravels () throws ParseException{
+		List <Voyage> listVoyages = getVoyageList();
+		for (Voyage item:listVoyages) {
+			Date date1=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(item.getDate_depart());  
+			if (date1.before(new java.sql.Date(System.currentTimeMillis()))) {
+				deleteVoyage(item.getId());
+				
+			}
+		}
+		
 	}
       public static void main(String args[]) {
 	 

@@ -247,7 +247,7 @@ public class LoginRegisterServlet extends HttpServlet {
 	    voy = i.getVoyageList();
 	
 	    request.setAttribute("list", voy);
-		request.getRequestDispatcher("/contacts.jsp").forward(request, response);
+		request.getRequestDispatcher("/voyagesPage.jsp").forward(request, response);
 	}
 	
 	if (request.getServletPath().equals("/supprimerVoy")) {

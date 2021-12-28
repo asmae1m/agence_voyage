@@ -20,7 +20,6 @@
 		<mapping class="beans.Activite" />
 		<mapping class="beans.Client" />
 		<mapping class="beans.Hebergement" />
-		<mapping class="beans.Panier" />
 		<mapping class="beans.Reservation" />
 		<mapping class="beans.Theme" />
 		<mapping class="beans.User" />

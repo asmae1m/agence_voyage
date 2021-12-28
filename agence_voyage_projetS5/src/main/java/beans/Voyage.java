@@ -67,10 +67,10 @@ public class Voyage {
 	@JoinTable(
 			
 			name = "Reservation", 
-			joinColumns = @JoinColumn(name = "Panier_id", referencedColumnName = "id"), 
+			joinColumns = @JoinColumn(name = "Voyage_id", referencedColumnName = "id"), 
 			inverseJoinColumns = @JoinColumn(name = "voyage_id", referencedColumnName = "id"))
 	
-	private List <Panier> paniers;
+	private List <Client> clients;
 	
 	
 	@OneToMany(mappedBy = "voyage")
@@ -79,14 +79,6 @@ public class Voyage {
 	@OneToMany(mappedBy = "voyage")
 	private List<Theme> themes;
 	
-	public List<Panier> getPaniers() {
-		return paniers;
-	}
-
-	public void setPaniers(List<Panier> paniers) {
-		this.paniers = paniers;
-	}
-
 	public List<Activite> getActivites() {
 		return activites;
 	}

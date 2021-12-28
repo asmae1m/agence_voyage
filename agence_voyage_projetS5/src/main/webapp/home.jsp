@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -382,40 +384,35 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Our Blog</h2>
+                     <h2>Nos voyages</h2>
                      <span>Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
                   </div>
                </div>
             </div>
             <div class="row">
+            <c:forEach items="${list}" var="voyage">
                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div class="blog-box">
-                     <figure><img src="images/blog-image0.jpg" alt="#"/>
-                        <span>4 Feb 2019</span>
+                     <figure><img src="data:image/jpg;base64, ${voyage.base64Image}" alt="#"/>
                      </figure>
                      <div class="travel">
-                        <span>Post  By :  Travel  Agency</span> 
-                        <p><strong class="Comment"> 06 </strong>  Comment</p>
-                        <p><strong class="like">05 </strong>Like</p>
+                        <span>Destination :  ${ voyage.getDestination() }</span> 
+                        <p><strong class="Comment"> ${ voyage.getPrix() } $</strong>  Prix</p>
                      </div>
-                     <h3>London Amazing Tour</h3>
-                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
+                     <h3>${ voyage.getDestination() } Amazing Tour</h3>
+                     <br>
+                              <ul class="list-unstyled">
+                                <li><i class="fa fa-plane"></i><strong> Date de départ: </strong>${ voyage.getDate_depart() } </li>
+                                <li><i class="fa fa-car"></i><strong> Date d'arrivée: </strong>${ voyage.getDate_arrivee() } </li>
+                                <li><i class="fa fa-phone"></i> <strong>Durée du voyage : </strong>${ voyage.getDuree() } jours</li>
+                                <li><i class="fa fa-map-marker"></i> <strong> Endroit de départ : </strong>${ voyage.getEndroit_depart() }</li>
+                                <li><i class="fa fa-money"></i> <strong>Prix du voyage : </strong>${ voyage.getPrix() } </li>
+                                <li><i class="fa fa-sun-o"></i> <strong> Type de voyage : </strong> ${ voyage.getType_voyage() }</li>
+                                
+                              </ul>
                   </div>
                </div>
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div class="blog-box">
-                     <figure><img src="images/blog-image.jpg" alt="#"/>
-                        <span>10 Feb 2019</span>
-                     </figure>
-                     <div class="travel">
-                        <span>Post  By :  Travel  Agency</span> 
-                        <p><strong class="Comment"> 06 </strong>  Comment</p>
-                        <p><strong class="like">05 </strong>Like</p>
-                     </div>
-                     <h3>London Amazing Tour</h3>
-                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
-                  </div>
-               </div>
+               </c:forEach>
             </div>
          </div>
       </div>

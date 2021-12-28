@@ -1,4 +1,6 @@
 package beans;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -35,8 +37,8 @@ public class Client {
 	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User user;
 	
-	@OneToOne (mappedBy = "client")
-	private Panier panier;
+	@ManyToMany(mappedBy="clients")
+	private List<Voyage> voyages;
 	
 	
 	public Client() {

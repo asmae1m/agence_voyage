@@ -68,7 +68,7 @@ public class Voyage {
 			
 			name = "Reservation", 
 			joinColumns = @JoinColumn(name = "Voyage_id", referencedColumnName = "id"), 
-			inverseJoinColumns = @JoinColumn(name = "voyage_id", referencedColumnName = "id"))
+			inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"))
 	
 	private List <Client> clients;
 	

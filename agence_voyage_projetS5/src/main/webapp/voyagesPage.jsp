@@ -125,7 +125,7 @@
                            <div class="col-md-9">
                               <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Keywords</label>
+                                    <label >Destination</label>
                                     <input class="form-control" placeholder="" type="text" name="">
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
@@ -172,7 +172,7 @@
                <div class="col-md-12">
                   <div class="titlepage">
                      <h2>Nos voyages</h2>
-                     <span>Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
+                     <span>CI-dessous nos voyages, si vous chercher un voyage spécifique utilisez les filtres de recherche!</span> 
                   </div>
                </div>
             </div>

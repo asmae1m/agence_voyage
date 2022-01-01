@@ -57,4 +57,44 @@ public class IThemesImplDao implements IThemesDao {
 		session.close();
 		return voyage;
 	}
+	public int getIdVoy (int id) {
+		Connection conexion=DAOFACTORY.getConnection();
+	   
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select voyage_id from theme where id=?");
+			ps.setInt(1, id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Theme v =new Theme();
+					v.setId(rs.getInt("id"));
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	public int getThemeId(String nom) {
+		Theme theme = new Theme();
+		Connection conexion=DAOFACTORY.getConnection();
+		   
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select id from theme where nom=?");
+			ps.setString(1, nom);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Theme v =new Theme();
+					v.setId(rs.getInt("id"));
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return theme.getId();
+	}
+		
 }
+	
+	

@@ -33,13 +33,17 @@ import dao.*;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherVoyages"})
+@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherVoyages","filterSearch"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class LoginRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	HttpSession session;
+	
 	IUserImplDao userDao = new IUserImplDao();
 	IClientImplDAO clientDao = new IClientImplDAO();
+	IThemesImplDao themeDao = new IThemesImplDao();
+	IActiviteeImplDao activiteDao = new IActiviteeImplDao();
 	
        
     /**
@@ -306,7 +310,29 @@ public class LoginRegisterServlet extends HttpServlet {
 		voya.setPrix(Float.parseFloat(request.getParameter("prix")));
 		i.updateVoyage(voya);
 		request.getRequestDispatcher("/listVoyages").forward(request, response);
+		
 	}
+	if (request.getServletPath().equals("/filterSearch")) {
+		
+		String theme= request.getParameter("theme");
+		String activite= request.getParameter("activite");
+		String destination= request.getParameter("destination");
+		String Date_depart= request.getParameter("date_depart");
+		String duree = request.getParameter("duree");
+		
+		themeDao.getIdVoy(themeDao.getThemeId(theme));
+		
+		//themeDao.getIdVoy();
+		
+		
+		
+		
+				
+		
+		
+	}
+	
+	
 	
 		}
 	

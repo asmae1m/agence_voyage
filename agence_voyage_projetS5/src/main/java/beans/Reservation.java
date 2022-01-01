@@ -12,9 +12,6 @@ public class Reservation {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="date_reservation")
-	private Date date_reservation;
-	
 	@Column(name="etat_reservation")
 	private boolean etat_reservation;
 	
@@ -23,10 +20,9 @@ public class Reservation {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reservation(int id, Date date_reservation, boolean etat_reservation) {
+	public Reservation(int id, boolean etat_reservation) {
 		super();
 		this.id = id;
-		this.date_reservation = date_reservation;
 		this.etat_reservation = etat_reservation;
 	}
 
@@ -36,14 +32,6 @@ public class Reservation {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Date getDate_reservation() {
-		return date_reservation;
-	}
-
-	public void setDate_reservation(Date date_reservation) {
-		this.date_reservation = date_reservation;
 	}
 
 	public boolean isEtat_reservation() {

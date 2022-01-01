@@ -2,6 +2,6 @@ package beans;
 
 public enum Type {
 	
-	accompagne, individuelle, circuit
+	individuelle, circuit
 
 }

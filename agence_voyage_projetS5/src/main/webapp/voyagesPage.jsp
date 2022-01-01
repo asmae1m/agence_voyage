@@ -21,7 +21,6 @@
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
       <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
@@ -49,7 +48,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   
+    <% if(session.getAttribute("client")==null){ 
+        response.sendRedirect("login.jsp");} 
+   	 %>
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
@@ -66,10 +67,9 @@
                      <div class="col-md-12">
                         <div class="header_information">
                            <ul>
-                           <% User u = (User) session.getAttribute("client"); %>
                               <li><img src="images/1.png" alt="#"/> Bachelor U.MY.ISMAIL</li>
                               <li><img src="images/2.png" alt="#"/> +71  5678954378</li>
-                              <li><img src="images/3.png" alt="#"/> Bonjour <%= u.getLogin() %>, ici votre espace!</li>
+                              <li><img src="images/3.png" alt="#"/> Bonjour ${client.getLogin() }, ici votre espace!</li>
                            </ul>
                         </div>
                      </div>
@@ -90,10 +90,10 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                              <ul class="menu-area-main">
-                                 <li> <a href="monPanier?idUser=${client1.getId() }">Mon panier</a> </li>
+                                 <li> <a href="monPanier?idClient=${client1.getId() }">Mon panier</a> </li>
                                  <li><a href="#travel">Activités</a></li>
                                  <li><a href="#contact">Contact Us</a></li>
-                                 <li><a href="afficherVoyages">Nos offres</a></li>
+                                 <li><a href="afficherVoyages">Votre panier</a></li>
                                 
                                  <li><a href="infosPersos.jsp">Vos informations</a></li>
                                  
@@ -119,39 +119,61 @@
                   <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
                   <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
                   <div class="container">
-                     <form class="main-form">
+                     <form action="filterSearch" method="POST" class="main-form">
                         <h3>Find Your Tour</h3>
                         <div class="row">
                            <div class="col-md-9">
                               <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Destination</label>
-                                    <input class="form-control" placeholder="" type="text" name="">
+                                    <label >Thème</label>
+                                    <select class="form-control" name="theme" >
+                                    <option> </option>
+                                    <option> Haute-montagne</option>
+                                    <option> Croisières</option>
+                                    <option> Terres polaires</option>
+                                    <option> Aventures</option>
+                                    <option> Voyage neige</option>
+                                    <option> Chemins de St-Jaques</option>
+                                    </select>
+                                   
                                  </div>
+                                
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Category</label>
-                                    <select class="form-control" name="Any">
-                                       <option>Any</option>
-                                       <option>Option 1</option>
-                                       <option>Option 2</option>
-                                       <option>Option 3</option>
+                                    <label >Activités</label>
+                                    <select class="form-control" name="activite" >
+                                    <option> </option>
+                                    <option> Randonnée</option>
+                                    <option> Trek </option>
+                                    <option> Safari</option>
+                                    <option> Observation animaux</option>
+                                    <option> Raquette</option>
+                                    <option> Ski de fond / ski nordique</option>
+                                    <option> Ski de randonnée / Freeride</option>
+                                    <option> Traineau à chiens</option>
+                                    <option> Alpinisme</option>
+                                    <option> Velo</option>
+                                    <option> Kayak et canoe </option>
+                                    <option> Decouverte</option>
+                                    </select>
+                                 </div>
+                                 
+                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label >Destination</label>
+                                    <select class="form-control" name="destination" >
+                                    <option> </option>
+                                    <option> meknes</option>
+                                    <option> khenifra</option>
+                                    <option> rabat</option>
+                                    <option> marrakech</option>
                                     </select>
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Min Price</label>
-                                    <input class="form-control" placeholder="00.0" type="text" name="00.0">
+                                    <label >Date de départ </label>
+                                    <input class="form-control" placeholder="Any" min="<%= new java.sql.Date(System.currentTimeMillis()) %>"type="date" name="date_depart">
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Duration</label>
-                                    <input class="form-control" placeholder="Any" type="text" name="Any">
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Date</label>
-                                    <input class="form-control" placeholder="Any" type="date" name="Any">
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Max Price</label>
-                                    <input class="form-control" placeholder="00.0" type="text" name="00.0">
+                                    <label >Durée </label>
+                                    <input class="form-control" placeholder="jours" type="text" name="duree">
                                  </div>
                               </div>
                            </div>
@@ -185,7 +207,7 @@
                      </figure>
                      <div class="travel">
                         <span>Destination :  ${ voyage.getDestination() }</span> 
-                        <p><strong class="Comment"> ${ voyage.getPrix() } $</strong>  Prix</p>
+                        <p><strong class="Comment"> ${ voyage.getPrix() } DHS</strong>  Prix</p>
                         <h3>${ voyage.getDestination() } Amazing Tour</h3>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-car"></i><strong> Date d'arrivée: </strong>${ voyage.getDate_arrivee() } </li>
@@ -199,7 +221,7 @@
                             <div class=" col-sm-7 emphasis">
                               <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
                                 </i> <i class="fa fa-comments-o"></i> Contact</button>
-                              <button formAction="ajoutPanier" type="button" class="btn btn-primary btn-sm">
+                              <button onclick="window.location.href = 'ajoutPanier?idClient=${client1.getId() }&idVoy=${ voyage.getId() }';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
                             </div>
@@ -298,7 +320,7 @@
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
+      <!--<script src="js/plugin.js"></script>-->
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>

@@ -9,4 +9,5 @@ public interface IActiviteeDao {
 	
 	public void setActivitee(Activite a);
 	public List<Activite> getActiviteById(int voyageId);
+	public int getIdVoy(int id);
 }

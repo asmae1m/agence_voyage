@@ -20,7 +20,7 @@
 @import url(slick.css);
 @import url(jquery.fancybox.min.css);
 @import url(jquery-ui.css);
-@import url(nice-select.css);
+
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
@@ -1082,7 +1082,7 @@ ul.top_icon li a {
 }
 
 
-}
+
 .main-menu ul li:last-child a {
      padding-right: 0;
 }
@@ -1156,9 +1156,7 @@ ul.top_icon li a {
      display: inline-block;
      vertical-align: middle;
 }
-.main-menu ul>li:nth-child (6) {
-     padding-right: 0px;
-}
+
 .nav>li {
      position: inherit;
      display: inline-block;
@@ -1647,16 +1645,7 @@ input[type="radio"] .styled:checked+label::after {
      font-size: 18px;
      font-weight: 600;
 }
-.nice-select.form-control span.current {
-     float: left;
-     width: 100%;
-     height: 38px;
-     line-height: 25px;
-}
-.nice-select.form-control {
-     width: 100%;
-     height: 40px;
-}
+
 .main-form {
      background: #ffffffe8;
      padding: 35px 35px;
@@ -1776,11 +1765,7 @@ input[type="radio"] .styled:checked+label::after {
      -webkit-background-size: 100% 20px;
      -moz-background-size: 100% 20px;
      background-size: 100% 20px;
-     background-image: -webkit-linear-gradient(left, #077f9b 0%, #0c1e43 100%), -webkit-linear-gradient(left, #077f9b 0%, #0c1e43 100%);
-     background-image: -moz-linear-gradient(left, #077f9b 0%, #0c1e43 100%), -moz-linear-gradient(left, #077f9b 0%, #0c1e434 100%);
-     background-image: -o-linear-gradient(left, #077f9b 0%, #0c1e43 100%), -o-linear-gradient(left, #077f9b 0%, #0c1e43 100%);
-     background-image: linear-gradient(to right, #077f9b 0%, #0c1e43 100%), linear-gradient(to right, #077f9b 0%, #0c1e43 100%);
-     max-width: 1004px;
+    
 }
 .about .about-box p span {
      display: inline-block;
@@ -1842,7 +1827,7 @@ input[type="radio"] .styled:checked+label::after {
      margin-left: 15px;
 }
 .titlepage h2::before,
-. .titlepage h2::after {
+.titlepage h2::after {
      content: "";
      position: absolute;
      height: 5px;

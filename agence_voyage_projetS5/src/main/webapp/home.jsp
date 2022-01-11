@@ -93,7 +93,7 @@
                                  <li> <a href="#about">About</a> </li>
                                  <li><a href="#travel">Activités</a></li>
                                  <li><a href="#blog">Blog</a></li>
-                                 <li><a href="afficherVoyages">Nos offres</a></li>
+                                 <li><a href="voyagesClient">Nos offres</a></li>
                                  <li><a href="register.jsp">Sign Up</a></li>
                                  <li><a href="login.jsp">Sign In</a></li>
                               </ul>

@@ -65,10 +65,9 @@
                      <div class="col-md-12">
                         <div class="header_information">
                            <ul>
-                           <% User u = (User) session.getAttribute("client"); %>
                               <li><img src="images/1.png" alt="#"/> Bachelor U.MY.ISMAIL</li>
                               <li><img src="images/2.png" alt="#"/> +71  5678954378</li>
-                              <li><img src="images/3.png" alt="#"/> Bonjour <%= u.getLogin() %>, ici votre espace!</li>
+                              <li><img src="images/3.png" alt="#"/> Bonjour ${client.getLogin() }, ici votre espace!</li>
                            </ul>
                         </div>
                      </div>
@@ -89,14 +88,15 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                              <ul class="menu-area-main">
-                                 <li class="active"> <a href="#">trouver</a> </li>
+                                 <li> <a href="monPanier?id_client=${client1.getId() }">Mon panier</a> </li>
+                                 <li><a href="reservations?id_client=${client1.getId() }">Mes reservations</a></li>
                                  <li><a href="#travel">Activités</a></li>
                                  <li><a href="#contact">Contact Us</a></li>
-                                 <li><a href="afficherVoyages">Nos offres</a></li>
+                                 <li><a href="afficherVoyages?id_client=${ client1.getId() }">Nos offres</a></li>
                                 
                                  <li><a href="infosPersos.jsp">Vos informations</a></li>
                                  
-                                 <li><a href="home.jsp">log out</a></li>
+                                 <li><a href="logout">log out</a></li>
                                
                               
                               </ul>

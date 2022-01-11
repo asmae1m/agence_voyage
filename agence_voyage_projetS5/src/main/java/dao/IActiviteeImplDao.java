@@ -57,22 +57,41 @@ public class IActiviteeImplDao implements IActiviteeDao {
 		session.close();
 		return voyage;
 	}
-	public int getIdVoy(int id) {
+	public int getActiviteId(String nom) {
+		Activite activite = new Activite();
 		Connection conexion=DAOFACTORY.getConnection();
 		   
 		try {
 			PreparedStatement ps = conexion.prepareStatement(
-					"select voyage_id from theme where id=?");
-			ps.setInt(1, id);
+					"select id from activite where nom=?");
+			ps.setString(1, nom);
 			 ResultSet rs = ps.executeQuery();
 				while(rs.next()){
-					Theme v =new Theme();
-					v.setId(rs.getInt("id"));
+					
+					activite.setId(rs.getInt("id"));
 				}			
 			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return id;
+		return activite.getId();
+	}
+	public int getIdVoyDeAct(int id) {
+		Connection conexion=DAOFACTORY.getConnection();
+		Activite activite = new Activite();
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select voyage_id from activite where id=?");
+			ps.setInt(1, id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+	
+					activite.setId(rs.getInt("voyage_id"));
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return activite.getId();
 	}
 	}

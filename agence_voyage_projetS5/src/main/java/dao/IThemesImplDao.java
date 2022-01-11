@@ -59,21 +59,21 @@ public class IThemesImplDao implements IThemesDao {
 	}
 	public int getIdVoy (int id) {
 		Connection conexion=DAOFACTORY.getConnection();
-	   
+	    Theme theme = new Theme();
 		try {
 			PreparedStatement ps = conexion.prepareStatement(
 					"select voyage_id from theme where id=?");
 			ps.setInt(1, id);
 			 ResultSet rs = ps.executeQuery();
 				while(rs.next()){
-					Theme v =new Theme();
-					v.setId(rs.getInt("id"));
+					
+					theme.setId(rs.getInt("voyage_id"));
 				}			
 			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return id;
+		return theme.getId();
 	}
 	public int getThemeId(String nom) {
 		Theme theme = new Theme();
@@ -85,8 +85,8 @@ public class IThemesImplDao implements IThemesDao {
 			ps.setString(1, nom);
 			 ResultSet rs = ps.executeQuery();
 				while(rs.next()){
-					Theme v =new Theme();
-					v.setId(rs.getInt("id"));
+					
+					theme.setId(rs.getInt("id"));
 				}			
 			ps.close();
 		} catch (Exception e) {

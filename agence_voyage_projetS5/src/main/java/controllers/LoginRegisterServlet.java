@@ -2,11 +2,17 @@ package controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,6 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 import org.hibernate.jpa.criteria.expression.function.CurrentDateFunction;
 import org.hibernate.type.LocalDateTimeType;
@@ -33,7 +42,7 @@ import dao.*;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherVoyages","filterSearch"})
+@WebServlet(urlPatterns = { "/LoginRegisterServlet", "/register","/logout","/login","/modifierVoy","/modifierVoyage","/supprimerVoy", "/ajoutVoyage", "/ajouteVoyage", "/listVoyages","/afficherVoyages","/filterSearch","/consulterVoyage","/voyagesClient"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class LoginRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +53,7 @@ public class LoginRegisterServlet extends HttpServlet {
 	IClientImplDAO clientDao = new IClientImplDAO();
 	IThemesImplDao themeDao = new IThemesImplDao();
 	IActiviteeImplDao activiteDao = new IActiviteeImplDao();
+	IVoyageImplDAO voyageDao = new IVoyageImplDAO();
 	
        
     /**
@@ -97,8 +107,22 @@ public class LoginRegisterServlet extends HttpServlet {
 		int telephone = Integer.parseInt(request.getParameter("telephone"));
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String email = request.getParameter("email");
 		
+		try {
+
+			MessageDigest md = MessageDigest.getInstance("md5");
+			byte[] hashInBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+			
+			
+			StringBuilder sb = new StringBuilder();
+			
+			for (byte b : hashInBytes) {
+				sb.append(String.format("%02x", b));
+			}
+			System.out.println("le mot de passe après hachage est : "+sb.toString());
+		
+			
+		String email = request.getParameter("email");
 		
 		User user = new User();
 		Client client = new Client();
@@ -112,25 +136,29 @@ public class LoginRegisterServlet extends HttpServlet {
 		client.setEmail(email);
 		
 		user.setLogin(username);
-		user.setPassword(password);
+		user.setPassword(sb.toString());
 		user.setRole(Role.Client);
 		
 		userDao.saveUser(user);
 		client.setUser(user);
 		clientDao.saveClient(client);
 		
-		
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
 		
+	
 	}
+	catch (NoSuchAlgorithmException e){
+		System.err.println("Erreur: "+e.toString());
+	}
+	}
+		
 	if (request.getServletPath().equals("/login")) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		/*---------------------------------------Checking if username and password matched---------------------------------*/
 
+	
 		    if (userDao.login(username, password)==true) {
 
 			User user = userDao.getUser(username, password);
@@ -164,6 +192,7 @@ public class LoginRegisterServlet extends HttpServlet {
             	 request.getRequestDispatcher("/error-404.jsp").forward(request, response);
              }
 		 }
+	
 	
 	if (request.getServletPath().equals("/ajoutVoyage")) {
 		InputStream inputStream1=null;
@@ -240,18 +269,70 @@ public class LoginRegisterServlet extends HttpServlet {
 
     if (request.getServletPath().equals("/afficherVoyages")) {
 		
+    	int id_client= Integer.parseInt(request.getParameter("id_client"));
     	IVoyageImplDAO i=new IVoyageImplDAO();
-		ArrayList<Voyage> voy=new ArrayList<Voyage>();
-		try {
+    	IPanierImplDao p=new IPanierImplDao();
+		ArrayList<Voyage> voy1= i.getVoyagesClient();
+		ArrayList<Voyage> voy2= p.getPanier(id_client);
+		ArrayList<Voyage> voy3= p.getVoyageReser(id_client);
+		ArrayList<Voyage> voy= new ArrayList<Voyage>();
+		for(int j=0;j<voy1.size();j++) {
+			int c=0;
+			for(int z=0;z<voy2.size();z++) {
+				
+				if(voy1.get(j).getId()==voy2.get(z).getId()) {
+					c++;
+				}
+				
+			}
+				if(c==0)
+					voy.add(voy1.get(j));
+		}
+		for(int j=0;j<voy.size();j++) {
+			for(int z=0;z<voy3.size();z++) {
+				
+				if(voy.get(j).getId()==voy3.get(z).getId()) {
+					voy.remove(j);
+				}
+				
+			}
+		}
+		String zero="";
+		if(voy.size()==0) {
+			zero="La liste de voyages est vide !";
+		}
+		request.setAttribute("zero", zero);
+		/*try {
 			i.deleteOldTravels();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	    voy = i.getVoyageList();
+		}*/
+	    
 	
 	    request.setAttribute("list", voy);
 		request.getRequestDispatcher("/voyagesPage.jsp").forward(request, response);
+	}
+    
+    if (request.getServletPath().equals("/voyagesClient")) {
+    	IVoyageImplDAO i=new IVoyageImplDAO();
+    	IPanierImplDao p=new IPanierImplDao();
+		ArrayList<Voyage> voy= i.getVoyagesClient();
+		String zero="";
+		if(voy.size()==0) {
+			zero="La liste de voyages est vide !";
+		}
+		request.setAttribute("zero", zero);
+		/*try {
+			i.deleteOldTravels();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+	    
+	
+	    request.setAttribute("list", voy);
+		request.getRequestDispatcher("/voyagePageNonConn.jsp").forward(request, response);
 	}
 	
 	if (request.getServletPath().equals("/supprimerVoy")) {
@@ -313,27 +394,246 @@ public class LoginRegisterServlet extends HttpServlet {
 		
 	}
 	if (request.getServletPath().equals("/filterSearch")) {
+		if (request.getServletPath().equals("/filterSearch")) {
+			
+			HashSet <Integer> voyages = new HashSet<Integer>();
+			int id_client=Integer.parseInt(request.getParameter("id_client"));
+			String theme= request.getParameter("theme");
+			System.out.println("le theme est : "+theme);
+			String activite= request.getParameter("activite");
+			
+			System.out.println("L'ACTIVITE EST:  "+activite);
+			String destination= request.getParameter("destination");
+			
+			System.out.println("LA DESTINATION EST : "+destination);
+			String Date_depart= request.getParameter("date_depart");
+			
+			System.out.println("LA DATE DE DEPART EST:  "+Date_depart);
+			String duree = request.getParameter("duree");
 		
-		String theme= request.getParameter("theme");
-		String activite= request.getParameter("activite");
-		String destination= request.getParameter("destination");
-		String Date_depart= request.getParameter("date_depart");
-		String duree = request.getParameter("duree");
-		
-		themeDao.getIdVoy(themeDao.getThemeId(theme));
-		
-		//themeDao.getIdVoy();
-		
-		
-		
-		
+			System.out.println("LA DUREE EST :  "+duree);
+			
+			String type = request.getParameter("type");
+			System.out.println("LE TYPE DE VOYAGE EST :  "+type);
+			
+			themeDao.getIdVoy(themeDao.getThemeId(theme));
+			
+			System.out.println("ID DU THEME: "+themeDao.getThemeId(theme));
+			
+			activiteDao.getIdVoyDeAct(activiteDao.getActiviteId(activite));
+			System.out.println("ID DE ACTIVITE : "+activiteDao.getActiviteId(activite));
+			IVoyageImplDAO ii=new IVoyageImplDAO();
+	    	IPanierImplDao p=new IPanierImplDao();
+			ArrayList<Voyage> voy1= ii.getVoyagesClient();
+			ArrayList<Voyage> voy22= p.getPanier(id_client);
+			ArrayList<Voyage> voy33= p.getVoyageReser(id_client);
+			ArrayList<Voyage> voy= new ArrayList<Voyage>();
+			for(int j=0;j<voy1.size();j++) {
+				int c=0;
+				for(int z=0;z<voy22.size();z++) {
+					
+					if(voy1.get(j).getId()==voy22.get(z).getId()) {
+						c++;
+					}
+					
+				}
+					if(c==0)
+						voy.add(voy1.get(j));
+			}
+			for(int j=0;j<voy.size();j++) {
+				for(int z=0;z<voy33.size();z++) {
+					
+					if(voy.get(j).getId()==voy33.get(z).getId()) {
+						voy.remove(j);
+					}
+					
+				}
+			}
+			String zero="";
+			if(voy.size()==0) {
+				zero="La liste de voyages est vide !";
+			}
+			request.setAttribute("zero", zero);
+			
+			if (!theme.equals("---")) {
+				List <Voyage> voy11 = voyageDao.voyageParTheme(theme);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy11.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy11.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy11.get(z).getId());
+						if(voy.get(i).getId()==voy11.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
 				
-		
-		
-	}
-	
-	
-	
+			}
+			if (!activite.equals("---")) {
+				List <Voyage> voy2 = voyageDao.voyageParActivite(activite);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy2.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy2.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy2.get(z).getId());
+						if(voy.get(i).getId()==voy2.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
+			}
+			if (!destination.equals("---")) {
+				List <Voyage> voy3 = voyageDao.voyageParDesti(destination);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy3.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy3.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy3.get(z).getId());
+						if(voy.get(i).getId()==voy3.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
+			}
+			if (!Date_depart.equals("")) {
+				List <Voyage> voy4 = voyageDao.voyageParDateDepart(Date_depart);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy4.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy4.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy4.get(z).getId());
+						if(voy.get(i).getId()==voy4.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
+			}
+			
+			if (!duree.equals("---")) {
+				List <Voyage> voy5 = voyageDao.voyageParDuree(duree);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy5.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy5.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy5.get(z).getId());
+						if(voy.get(i).getId()==voy5.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
+			}
+			if (!type.equals("---")) {
+				List <Voyage> voy6 = voyageDao.voyageParType(type);
+				System.out.println("voyage initial size : "+voy.size());
+				int size=voy.size();
+				System.out.println("voyage filtrer size : "+voy6.size());
+				int i=0;
+				for(int j=0;j<size;j++) {
+					
+					int c=0;
+					for(int z=0;z<voy6.size();z++) {
+						System.out.println("id voyage : "+voy.get(i).getId());
+						System.out.println("id voyage : "+voy6.get(z).getId());
+						if(voy.get(i).getId()==voy6.get(z).getId()) {
+							c++;
+						}
+						
+					}
+						if(c==0) {
+							voy.remove(voy.get(i));
+						}else
+							++i;
+				}
+				System.out.println("voyage filtrer size : "+voy.size());
+				
+			}
+			
+		   
+			request.setAttribute("list",voy);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/voyagesPage.jsp");
+			dispatcher.forward(request, response);
 		}
 	
+	else if (request.getServletPath().equals("/consulterVoyage")) {
+		
+		int id_voy = Integer.parseInt(request.getParameter("id"));
+		Voyage voyage = voyageDao.getVoyage(id_voy);
+		request.setAttribute("voyage",voyage);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/consultVoy.jsp");
+		dispatcher.forward(request, response);
+		
+	
 	}
+	
+	}
+	}
+}
+	
+ 	   
+ 	   //Voyage voyage = new Voyage(
+		
+		
+	
+			
+        
+	
+	
+
+	
+	
+

@@ -2,7 +2,7 @@
           <ul class="nav">
             <li class="nav-item nav-category">Main Menu</li>
             <li class="nav-item">
-              <a class="nav-link" href="listReservations.jsp">
+              <a class="nav-link" href="reservationsAdmin">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Liste de reservations</span>
               </a>

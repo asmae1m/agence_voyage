@@ -44,7 +44,4 @@ public class Theme {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
-
 }

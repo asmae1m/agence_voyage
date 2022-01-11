@@ -22,21 +22,24 @@ public class IUserImplDao implements IUserDao{
 	private static Session session = HibernateUtil.getSessionFactory().openSession();
 
     public void saveUser(User user) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
-            transaction = session.beginTransaction();
-            // save the User object
-            session.save(user);
-            
-            // commit transaction
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+    	
+    
+      try {
+    	    Connection conexion=DAOFACTORY.getConnection();
+			PreparedStatement ps= conexion.prepareStatement("INSERT INTO user (username,password,role) VALUES(?,?,?)");
+			
+			ps.setString(1, user.getLogin());
+			System.out.println("this is the name"+ user.getLogin());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getRole().toString());
+			
+			ps.executeUpdate();
+			ps.close();
+		
+			
+    }catch (SQLException e) {
+		 e.printStackTrace();
+    }
     }
     public List<User> getUserList(){
 		 return session.createQuery("from user").list();

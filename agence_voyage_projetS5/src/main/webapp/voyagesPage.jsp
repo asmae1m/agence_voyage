@@ -11,6 +11,8 @@
       <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      
+      
       <!-- site metas -->
       <title>Notre Agence</title>
       <meta name="keywords" content="">
@@ -43,6 +45,10 @@
       <link rel="stylesheet" href="assets/css/demo_1/style.css">
       <!-- End Layout styles -->
       <link rel="shortcut icon" href="assets/images/favicon.ico" />
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -90,14 +96,13 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                              <ul class="menu-area-main">
-                                 <li> <a href="monPanier?idClient=${client1.getId() }">Mon panier</a> </li>
-                                 <li><a href="#travel">Activités</a></li>
-                                 <li><a href="#contact">Contact Us</a></li>
-                                 <li><a href="afficherVoyages">Votre panier</a></li>
+                             <li> <a href="monPanier?id_client=${client1.getId() }">Mon panier</a> </li>
+                                 <li><a href="reservations?id_client=${client1.getId() }">Mes reservations</a></li>
                                 
+                                 <li><a href="afficherVoyages?id_client=${ client1.getId() }">Nos offres</a></li>
                                  <li><a href="infosPersos.jsp">Vos informations</a></li>
                                  
-                                 <li><a href="home.jsp">log out</a></li>
+                                 <li><a href="logout">log out</a></li>
                                
                               
                               </ul>
@@ -117,17 +122,20 @@
             <div class="container">
                <div class="text-bg">
                   <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
-                  <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                 &nbsp;
+                 &nbsp;
+                 &nbsp;
                   <div class="container">
-                     <form action="filterSearch" method="POST" class="main-form">
+                     <form action="filterSearch?id_client=${client1.getId() }" method="POST" class="main-form">
                         <h3>Find Your Tour</h3>
                         <div class="row">
                            <div class="col-md-9">
                               <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Thème</label>
+                                    
                                     <select class="form-control" name="theme" >
-                                    <option> </option>
+                                    <option>---</option>
                                     <option> Haute-montagne</option>
                                     <option> Croisières</option>
                                     <option> Terres polaires</option>
@@ -140,8 +148,8 @@
                                 
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Activités</label>
-                                    <select class="form-control" name="activite" >
-                                    <option> </option>
+                                    <select class="form-control" name="activite">
+                                    <option>---</option>
                                     <option> Randonnée</option>
                                     <option> Trek </option>
                                     <option> Safari</option>
@@ -160,25 +168,37 @@
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Destination</label>
                                     <select class="form-control" name="destination" >
-                                    <option> </option>
+                                    <option>---</option>
                                     <option> meknes</option>
                                     <option> khenifra</option>
                                     <option> rabat</option>
                                     <option> marrakech</option>
+                                    <option>eljadida</option>
+                                    <option>ouarzazate</option>
+                                    <option>fes</option>
+                                    
                                     </select>
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Date de départ </label>
-                                    <input class="form-control" placeholder="Any" min="<%= new java.sql.Date(System.currentTimeMillis()) %>"type="date" name="date_depart">
+                                    <input value="date" class="form-control"  min="<%= new java.sql.Date(System.currentTimeMillis()) %>" type="date" name="date_depart" >
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Durée </label>
-                                    <input class="form-control" placeholder="jours" type="text" name="duree">
+                                    <input value="---"class="form-control" placeholder="jours" type="text" name="duree" >
                                  </div>
+                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label >Type de voyage</label>
+                                    <select class="form-control" name="type" required="required">
+                                       <option>---</option>
+                                       <option>Circuit accompagne</option>
+                                       <option>Voyage en individuel</option>
+                                    </select>
+                                 
                               </div>
                            </div>
-                           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                              <a href="#">search</a>
+                           
+                             <input type="submit" value="Rechercher">
                            </div>
                         </div>
                      </form>
@@ -195,6 +215,7 @@
                   <div class="titlepage">
                      <h2>Nos voyages</h2>
                      <span>CI-dessous nos voyages, si vous chercher un voyage spécifique utilisez les filtres de recherche!</span> 
+                     <span style="color: red;"><c:out value="${zero }"/></span>
                   </div>
                </div>
             </div>
@@ -219,9 +240,62 @@
                               <div class=" bottom text-center">
                            
                             <div class=" col-sm-7 emphasis">
-                              <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-user">
-                                </i> <i class="fa fa-comments-o"></i> Contact</button>
-                              <button onclick="window.location.href = 'ajoutPanier?idClient=${client1.getId() }&idVoy=${ voyage.getId() }';" type="submit" class="btn btn-primary btn-sm">
+                            <!--  <form action="consulterVoyage?id=${voyage.getId()}" method="POST">-->
+                              <button class="btn btn-success btn-sm"  data-toggle="modal"  data-target="#mymodal">Consulter</button>
+                           
+                              <div class="modal fade" id="mymodal" role="dialog">
+                          <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                          <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Modal Header</h4>
+                          </div>
+                         <div class="modal-body">
+                          <span class="section"> Informations du voyage  </span>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" value ='${voyage.getId()}'data-validate-length-range="6" data-validate-words="2" name="id" required="required" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nom<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" value ='${voyage.getDate_arrivee()}'data-validate-length-range="6" data-validate-words="2" name="date_arrivee" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Prènom <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  value ='${voyage.getDate_depart()}' data-validate-length-range="6" data-validate-words="2" name="date_depart" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CNE  <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input type="text" class="form-control"  value ='${voyage.destination}' name="destination">
+                                            </div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CIN  <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input type="text" class="form-control"  value ='${voyage.prix}' name="prix" >
+                                            </div>
+                                        </div>
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                         </div>
+      </div>
+    </div>
+  </div> 
+                              
+                              
+                             
+                              <button onclick="window.location.href = 'ajoutPanier?id_client=${client1.getId() }&idVoy=${ voyage.getId() }';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
                             </div>

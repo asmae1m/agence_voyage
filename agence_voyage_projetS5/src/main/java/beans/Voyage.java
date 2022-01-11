@@ -79,6 +79,8 @@ public class Voyage {
 	@OneToMany(mappedBy = "voyage")
 	private List<Theme> themes;
 	
+	
+	
 	public List<Activite> getActivites() {
 		return activites;
 	}

@@ -90,7 +90,7 @@
                             <label class="col-sm-3 col-form-label">Type de voyage</label>
                             <div class="col-sm-9">
                               <select class="form-control" name="type">
-                                <option>Circuit accompagné</option>
+                                <option>Circuit accompagne</option>
                                 <option>Voyage en individuel</option>
                               </select>
                             </div>

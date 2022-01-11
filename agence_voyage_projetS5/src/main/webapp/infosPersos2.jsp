@@ -199,7 +199,7 @@
             </li>
             <li class="nav-item nav-category">Main Menu</li>
             <li class="nav-item">
-              <a class="nav-link" href="afficherInfos">
+              <a class="nav-link" href="infosPersos.jsp">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Vos infos</span>
               </a>
@@ -207,7 +207,7 @@
             
             
             <li class="nav-item">
-              <a class="nav-link" href="modifierInfos.jsp">
+              <a class="nav-link" >
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">modifier vos infos</span>
               </a>
@@ -244,8 +244,8 @@
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Vos modifications ont été sauvegardées!!</h4>
-                    <form action="afficherInfos" class="class-form" method="POST" >
+                    <h4 class="card-title">Vos informations personnelles</h4>
+                    <form class="class-form" action ="modifierInfos" method="POST" >
                         
                    
                       <div class="row">
@@ -253,7 +253,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label" >identifiant : </label>
                             <div class="col-sm-9">
-                           <input class="form-control" disabled="disabled" value='${client3.id}'>
+                           <input class="form-control" name="id" value='${client1.id}'>
                             </div>
                          
                           </div>
@@ -262,7 +262,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Adresse</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled" name="adresse" value='${client3.adresse}' required="required">
+                              <input class="form-control" name="adresse" value='${client1.adresse}' required="required">
                             </div>
                           </div>
                         </div>
@@ -273,7 +273,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nationalité</label>
                             <div class="col-sm-9">
-                               <input class="form-control" disabled="disabled" name="nationalite" value='${client3.nationalite}'>
+                               <input class="form-control" name="nationalite" value='${client1.nationalite}'>
                             </div>
                           </div>
                         </div>
@@ -281,7 +281,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nom</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled" name="nom" value='${client3.nom}'>
+                              <input class="form-control" name="nom" value='${client1.nom}'>
                             </div>
                           </div>
                         </div>
@@ -291,7 +291,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Prénom</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled"name="prenom" value='${client3.prenom}'>
+                              <input class="form-control" name="prenom" value='${client1.prenom}'>
                             </div>
                           </div>
                         </div>
@@ -299,7 +299,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">N°telephone</label>
                             <div class="col-sm-9">
-                             <input class="form-control" disabled="disabled" name="telephone" value='${client3.telephone}'>
+                             <input class="form-control" name="telephone" value='${client1.telephone}'>
                             </div>
                           </div>
                         </div>
@@ -309,7 +309,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Code Postal</label>
                             <div class="col-sm-9">
-                              <input class="form-control" disabled="disabled" name="codePostal" value='${client3.codePostal}'>
+                              <input class="form-control" name="codePostal" value='${client1.codePostal}'>
                             </div>
                           </div>
                         </div>
@@ -318,14 +318,17 @@
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                               <input class="form-control" disabled="disabled" name="email" value='${client3.email}'>
+                               <input class="form-control" name="email" value='${client1.email}'>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-12 grid-margin stretch-card">
                    
                   </div>
-                   
+                  <button class="btn btn-success mr-2" formaction="editInfos" formaction="post" >Sauvegardez les modifications</button>
+                        
+                   <a href="homeClient.jsp"></a><button class="btn btn-light">Retour à la page principale</button>
                     </form>
                     
                   </div>
@@ -333,7 +336,6 @@
               </div>
             </div>
           </div>
-          
           
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

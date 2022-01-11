@@ -30,7 +30,27 @@
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
-         
+         <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="afficherVoyages?id_client=${client1.getId() }" class="site_title"><i class="fa fa-money"></i> <span>Nos offres</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            
+            <!-- /menu footer buttons -->
+          </div>
 
             
         </div>
@@ -63,13 +83,7 @@
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                          </div>
-                      </li>
+                      
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -78,7 +92,7 @@
                   <div class="x_content">
                   
                   
-                 
+                 <h3 class="prod_title">${ voyage.getDestination() } Amazing Tour</h3>
                     <div class="col-md-7 col-sm-7 ">
                       <div class="product-image">
                       
@@ -93,12 +107,11 @@
                     <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">
 
  
-                       <div class="product_price">
                        
                        <div class="travel">
                         
                         
-                        <h3 class="prod_title">${ voyage.getDestination() } Amazing Tour</h3>
+                        
                               <ul class="list-unstyled">
                                 <li style="font-size:1.5vw"><i class="fa fa-sun-o" hidden="hidden"></i> <strong> ID: </strong> ${ voyage.getId() }</li>
                                 
@@ -137,7 +150,6 @@
                            
                            
                           </div>
-                     </div>
                      </div>
                     </div>
                    </div>

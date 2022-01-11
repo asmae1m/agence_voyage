@@ -196,6 +196,10 @@
                                     </select>
                                  
                               </div>
+                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label >Votre Budget </label>
+                                    <input value="0"class="form-control" placeholder="jours" type="text" name="budget" >
+                                 </div>
                            </div>
                            
                              <input type="submit" value="Rechercher">
@@ -245,6 +249,7 @@
                                 <i class="fa fa-user"> </i>Consulter
                               </button>
                               </form>-->
+                              
                               <button onclick="window.location.href = 'consulterVoyage?id=${ voyage.getId() }';" type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-anchor"> </i> Consult
                               </button>

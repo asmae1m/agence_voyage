@@ -679,6 +679,41 @@ public class IVoyageImplDAO implements IVoyageDAO{
 		}
 		return i;
 	}
+	public float getPrice(int id) {
+		Voyage voyage=new Voyage();
+		Connection conexion=DAOFACTORY.getConnection();
+		   
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select prix from voyage where id=?");
+			ps.setInt(1, id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					
+					
+					voyage.setPrix(rs.getInt("prix"));
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return voyage.getPrix();
+	}
+	
+	
+	public List <Voyage> getByBudget(float budget) {
+		IVoyageImplDAO voyageDao = new IVoyageImplDAO();
+		List <Voyage> voyages = voyageDao.getAll();
+	     
+		
+		for (int i=0;i<voyages.size();i++) {
+			if(voyages.get(i).getPrix()>budget) {
+				voyages.remove(voyages.get(i));
+			}
+			
+		}
+		return voyages;
+	}
        
      
        

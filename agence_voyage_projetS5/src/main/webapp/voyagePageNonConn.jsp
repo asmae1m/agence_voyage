@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
+    <%@ page import  ="beans.User" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,6 @@
       <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
       <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
@@ -49,7 +48,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
@@ -80,7 +78,7 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
-                           <div class="logo"> <a href="home.jsp"><img src="images/logo.png" alt="#"></a> </div>
+                           <div class="logo"> <a href="index.html"><img src="images/logo.png" alt="#"></a> </div>
                         </div>
                      </div>
                   </div>
@@ -113,7 +111,7 @@
             <div class="container">
                <div class="text-bg">
                   <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
-                  <div class="button_section"> <a class="main_bt" href="#about">Read More</a>  </div>
+                  <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
                   <div class="container">
                      <form action="searchNoConn" method="POST" class="main-form">
                         <h3>Find Your Tour</h3>
@@ -187,9 +185,8 @@
                               </div>
                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Votre Budget </label>
-                                    <input value="0"class="form-control"  type="text" name="budget" >
+                                    <input value="0"class="form-control" placeholder="jours" type="text" name="budget" >
                                  </div>
-                                 
                              
                            </div>
                            
@@ -204,230 +201,13 @@
          </div>
       </section>
       <!-- about -->
-      <div id="about" class="about">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12 ">
-                  <div class="titlepage">
-                     <h2>About  our travel agency</h2>
-                     <span> fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="bg">
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                     <div class="about-box">
-                        <p> <span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure thereThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there</span></p>
-                        <div class="palne-img-area">
-                           <img src="images/plane-img.png" alt="images">
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a href="#">Read More</a>
-         </div>
-      </div>
-      <!-- end about -->
-      <!-- traveling -->
-      <div id="travel" class="traveling">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12 ">
-                  
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon.png" alt="icon"/></i>
-                     <h3>Randonnée et Trek</h3>
-                     
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Randonnée</a>
-                          <a class="dropdown-item" href="#">Trek</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon2.png" alt="icon"/></i>
-                     <h3>Découverte d'animaux</h3>
-                     
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus  </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Safari</a>
-                          <a class="dropdown-item" href="#">Observations animaux</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon3.png" alt="icon"/></i>
-                     <h3>Activités neige</h3>
-                   
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Ski de fond / ski nordique</a>
-                          <a class="dropdown-item" href="#">Ski de randonnée / Freeride</a>
-                          <a class="dropdown-item" href="#">Traineau à chiens</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon2.png" alt="icon"/></i>
-                     <h3>Activités de montagne</h3>
-                   
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                         
-                          <a class="dropdown-item" href="#">Alpinisme</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-             <div class="col-4 grid-margin stretch-card">
-                   
-                  </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon.png" alt="icon"/></i>
-                     <h3>Autres activités</h3>
-                    
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-
-                          <a class="dropdown-item" href="#">Vélo</a>
-                          <a class="dropdown-item" href="#">Kayak et canoe</a>
-                          <a class="dropdown-item" href="#">Découverte</a>
-                         
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <br>
-               
-               <br>
-               
-         </div>
-      </div>
-      <!-- end traveling -->
-      <!--London -->
-      <br>
-      <br>
-      <div class="London">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Weekend in New York, London</h2>
-                     <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="container-fluid">
-            <div class="London-img">
-               <figure><img src="images/London.jpg" alt="img"/></figure>
-            </div>
-         </div>
-      </div>
-      <!-- end London -->
-      <!--Tours -->
-      <div class="Tours">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>The Best Tours</h2>
-                     <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
-                  </div>
-               </div>
-            </div>
-            <section id="demos">
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="owl-carousel owl-theme">
-                        <div class="item">
-                           <img class="img-responsive" src="images/1.jpg" alt="#" />
-                           <h3>Holiday Tour</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in soe suffk even slightly believable. If y be sure there</p>
-                        </div>
-                        <div class="item">
-                           <img class="img-responsive" src="images/2.jpg" alt="#" />
-                           <h3>New York</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in soe suffk even slightly believable. If y be sure there</p>
-                        </div>
-                        <div class="item">
-                           <img class="img-responsive" src="images/3.jpg" alt="#" />
-                           <h3>London</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in soe suffk even slightly believable. If y be sure there</p>
-                        </div>
-                        <div class="item">
-                           <img class="img-responsive" src="images/2.jpg" alt="#" />
-                           <h3>Holiday Tour</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in soe suffk even slightly believable. If y be sure there</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-         </div>
-      </div>
-      <!-- end Tours -->
-      <!-- Amazing -->
-      <div class="amazing">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="amazing-box">
-                     <h2>Amazing London Tour</h2>
-                     <span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there</span>
-                     <a href="#">Book Now</a><a href="#">Get More</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end Amazing -->
-      <!-- our blog -->
       <div id="blog" class="blog">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
                      <h2>Nos voyages</h2>
-                     <span>Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span> 
+                     <span>CI-dessous nos voyages, si vous chercher un voyage spécifique utilisez les filtres de recherche!</span> 
                   </div>
                </div>
             </div>
@@ -436,28 +216,55 @@
                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div class="blog-box">
                      <figure><img src="data:image/jpg;base64, ${voyage.base64Image}" alt="#"/>
+                     <span>${ voyage.getDate_depart() }</span>
                      </figure>
                      <div class="travel">
                         <span>Destination :  ${ voyage.getDestination() }</span> 
-                        <p><strong class="Comment"> ${ voyage.getPrix() } $</strong>  Prix</p>
-                     </div>
-                     <h3>${ voyage.getDestination() } Amazing Tour</h3>
-                     <br>
+                        <p><strong class="Comment"> ${ voyage.getPrix() } DHS</strong>  Prix</p>
+                        <h3>${ voyage.getDestination() } Amazing Tour</h3>
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-plane"></i><strong> Date de départ: </strong>${ voyage.getDate_depart() } </li>
                                 <li><i class="fa fa-car"></i><strong> Date d'arrivée: </strong>${ voyage.getDate_arrivee() } </li>
                                 <li><i class="fa fa-phone"></i> <strong>Durée du voyage : </strong>${ voyage.getDuree() } jours</li>
                                 <li><i class="fa fa-map-marker"></i> <strong> Endroit de départ : </strong>${ voyage.getEndroit_depart() }</li>
-                                <li><i class="fa fa-money"></i> <strong>Prix du voyage : </strong>${ voyage.getPrix() } </li>
                                 <li><i class="fa fa-sun-o"></i> <strong> Type de voyage : </strong> ${ voyage.getType_voyage() }</li>
                                 
                               </ul>
+                              <div class=" bottom text-center">
+                           
+                           
+                            <div class=" col-sm-7 emphasis">
+                            <button onclick="window.location.href = 'consulterVoyage?id=${ voyage.getId() }';" type="submit" class="btn btn-success btn-sm">
+                                <i class="fa fa-anchor"> </i> Consult
+                              </button>
+                              <button onclick="window.location.href = 'login.jsp';" type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus"> </i> Ajouter au panier
+                              </button>
+                              
+                            </div>
+                          </div>
+                     </div>
+                     
                   </div>
                </div>
                </c:forEach>
             </div>
          </div>
       </div>
+      <!-- end about -->
+      <!-- traveling -->
+      
+      <!-- end traveling -->
+      <!--London -->
+      
+      <!-- end London -->
+      <!--Tours -->
+      
+      <!-- end Tours -->
+      <!-- Amazing -->
+      
+      <!-- end Amazing -->
+      <!-- our blog -->
+      
       <!-- end our blog -->
       <!-- footer -->
       <footer>
@@ -529,7 +336,7 @@
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
+      <!--<script src="js/plugin.js"></script>-->
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>

@@ -79,7 +79,7 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
-                           <div class="logo"> <a href="index.html"><img src="images/logo.png" alt="#"></a> </div>
+                           <div class="logo"> <a href="homeClient.jsp"><img src="images/logo.png" alt="#"></a> </div>
                         </div>
                      </div>
                   </div>
@@ -94,7 +94,7 @@
                                  <li><a href="#contact">Contact Us</a></li>
                                  <li><a href="afficherVoyages?id_client=${ client1.getId() }">Nos offres</a></li>
                                 
-                                 <li><a href="infosPersos.jsp">Vos informations</a></li>
+                                 <li><a href="modifierInfos.jsp">Vos informations</a></li>
                                  
                                  <li><a href="logout">log out</a></li>
                                
@@ -116,47 +116,86 @@
             <div class="container">
                <div class="text-bg">
                   <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
-                  <div class="button_section"> <a class="main_bt" href="#">Read More</a>  </div>
+                 &nbsp;
+                 &nbsp;
+                 &nbsp;
                   <div class="container">
-                     <form class="main-form">
+                     <form action="filterSearch?id_client=${client1.getId() }" method="POST" class="main-form">
                         <h3>Find Your Tour</h3>
                         <div class="row">
-                           <div class="col-md-9">
+                           <div class="col-md-12">
                               <div class="row">
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Keywords</label>
-                                    <input class="form-control" placeholder="" type="text" name="">
+                                    <label >Thème</label>
+                                    
+                                    <select class="form-control" name="theme" >
+                                    <option>---</option>
+                                    <option> Haute-montagne</option>
+                                    <option> Croisières</option>
+                                    <option> Terres polaires</option>
+                                    <option> Aventures</option>
+                                    <option> Voyage neige</option>
+                                    <option> Chemins de St-Jaques</option>
+                                    </select>
+                                   
                                  </div>
+                                
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Category</label>
-                                    <select class="form-control" name="Any">
-                                       <option>Any</option>
-                                       <option>Option 1</option>
-                                       <option>Option 2</option>
-                                       <option>Option 3</option>
+                                    <label >Activités</label>
+                                    <select class="form-control" name="activite">
+                                    <option>---</option>
+                                    <option> Randonnée</option>
+                                    <option> Trek </option>
+                                    <option> Safari</option>
+                                    <option> Observation animaux</option>
+                                    <option> Raquette</option>
+                                    <option> Ski de fond / ski nordique</option>
+                                    <option> Ski de randonnée / Freeride</option>
+                                    <option> Traineau à chiens</option>
+                                    <option> Alpinisme</option>
+                                    <option> Velo</option>
+                                    <option> Kayak et canoe </option>
+                                    <option> Decouverte</option>
+                                    </select>
+                                 </div>
+                                 
+                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <label >Destination</label>
+                                    <select class="form-control" name="destination" >
+                                    <option>---</option>
+                                    <option> meknes</option>
+                                    <option> khenifra</option>
+                                    <option> rabat</option>
+                                    <option> marrakech</option>
+                                    <option>eljadida</option>
+                                    <option>ouarzazate</option>
+                                    <option>fes</option>
+                                    
                                     </select>
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Min Price</label>
-                                    <input class="form-control" placeholder="00.0" type="text" name="00.0">
+                                    <label >Date de départ </label>
+                                    <input value="date" class="form-control"  min="<%= new java.sql.Date(System.currentTimeMillis()) %>" type="date" name="date_depart" >
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Duration</label>
-                                    <input class="form-control" placeholder="Any" type="text" name="Any">
+                                    <label >Durée </label>
+                                    <input value="---"class="form-control" placeholder="jours" type="text" name="duree" >
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Date</label>
-                                    <input class="form-control" placeholder="Any" type="date" name="Any">
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Max Price</label>
-                                    <input class="form-control" placeholder="00.0" type="text" name="00.0">
-                                 </div>
+                                    <label >Type de voyage</label>
+                                    <select class="form-control" name="type" required="required">
+                                       <option>---</option>
+                                       <option>Circuit accompagné</option>
+                                       <option>Voyage en individuel</option>
+                                    </select>
+                                 
                               </div>
+                             
                            </div>
-                           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                              <a href="#">search</a>
+                           
+                              <input type="submit" value="Rechercher">
                            </div>
+                           
                         </div>
                      </form>
                   </div>

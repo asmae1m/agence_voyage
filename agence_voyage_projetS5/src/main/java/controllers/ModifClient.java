@@ -22,7 +22,6 @@ public class ModifClient extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	IUserImplDao userDao = new IUserImplDao();
 	IClientImplDAO clientDao = new IClientImplDAO();
-	Client client = new Client();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -97,7 +96,7 @@ public class ModifClient extends HttpServlet {
  	    	session.setAttribute("client3",client);
  	    	System.out.println("CLIENT UPDATED");
  	    
- 	    	response.sendRedirect("infosPersos2.jsp");
+ 	    	response.sendRedirect("infosPersos.jsp");
  	    	 	   
  		}
 		

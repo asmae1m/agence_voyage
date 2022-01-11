@@ -240,64 +240,19 @@
                               <div class=" bottom text-center">
                            
                             <div class=" col-sm-7 emphasis">
-                            <!--  <form action="consulterVoyage?id=${voyage.getId()}" method="POST">-->
-                              <button class="btn btn-success btn-sm"  data-toggle="modal"  data-target="#mymodal">Consulter</button>
-                           
-                              <div class="modal fade" id="mymodal" role="dialog">
-                          <div class="modal-dialog modal-lg">
-                          <div class="modal-content">
-                          <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Modal Header</h4>
-                          </div>
-                         <div class="modal-body">
-                          <span class="section"> Informations du voyage  </span>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" value ='${voyage.getId()}'data-validate-length-range="6" data-validate-words="2" name="id" required="required" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nom<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" value ='${voyage.getDate_arrivee()}'data-validate-length-range="6" data-validate-words="2" name="date_arrivee" required="required" />
-                                            </div>
-                                        </div>
-
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Prènom <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  value ='${voyage.getDate_depart()}' data-validate-length-range="6" data-validate-words="2" name="date_depart" required="required" />
-                                            </div>
-                                        </div>
-
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CNE  <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" class="form-control"  value ='${voyage.destination}' name="destination">
-                                            </div>
-                                        </div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CIN  <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6 ">
-                                                <input type="text" class="form-control"  value ='${voyage.prix}' name="prix" >
-                                            </div>
-                                        </div>
-                        </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                         </div>
-      </div>
-    </div>
-  </div> 
-                              
-                              
-                             
+                           <!-- <form action="consulterVoyage?id=${voyage.getId()}" method="POST"> 
+                               <button  type="submit" class="btn btn-success btn-sm">
+                                <i class="fa fa-user"> </i>Consulter
+                              </button>
+                              </form>-->
+                              <button onclick="window.location.href = 'consulterVoyage?id=${ voyage.getId() }';" type="submit" class="btn btn-success btn-sm">
+                                <i class="fa fa-anchor"> </i> Consult
+                              </button>
                               <button onclick="window.location.href = 'ajoutPanier?id_client=${client1.getId() }&idVoy=${ voyage.getId() }';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
+                             
+                             
                             </div>
                           </div>
                      </div>

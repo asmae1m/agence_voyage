@@ -94,4 +94,28 @@ public class IActiviteeImplDao implements IActiviteeDao {
 		}
 		return activite.getId();
 	}
+public List <Activite> getActIdByVoy(int voyage_id) {
+		
+		List <Activite> activites = new ArrayList<Activite>();
+		Connection conexion=DAOFACTORY.getConnection();
+		   
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select a.* from voyage v,activite a where v.id=a.voyage_id and v.id=?;");
+			ps.setInt(1, voyage_id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Activite activite = new Activite();
+					activite.setId(rs.getInt("id"));
+					activite.setNom(rs.getString("nom"));
+					
+					activites.add(activite);
+					
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return activites;
+	}
 	}

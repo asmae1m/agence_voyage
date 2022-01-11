@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -93,6 +94,31 @@ public class IThemesImplDao implements IThemesDao {
 			e.printStackTrace();
 		}
 		return theme.getId();
+	}
+	
+	public List <Theme> getThemeIdByVoy(int voyage_id) {
+		
+		List <Theme> themes = new ArrayList<Theme>();
+		Connection conexion=DAOFACTORY.getConnection();
+		   
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select t.* from voyage v,theme t where v.id=t.voyage_id and v.id=?;");
+			ps.setInt(1, voyage_id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Theme theme = new Theme();
+					theme.setId(rs.getInt("id"));
+					theme.setNom(rs.getString("nom"));
+					
+					themes.add(theme);
+					
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return themes;
 	}
 		
 }

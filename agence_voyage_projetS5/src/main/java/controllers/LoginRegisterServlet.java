@@ -608,31 +608,45 @@ public class LoginRegisterServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/voyagesPage.jsp");
 			dispatcher.forward(request, response);
 		}
-	
-	else if (request.getServletPath().equals("/consulterVoyage")) {
+	}
+if (request.getServletPath().equals("/consulterVoyage")) {
 		
 		int id_voy = Integer.parseInt(request.getParameter("id"));
-		Voyage voyage = voyageDao.getVoyage(id_voy);
-		request.setAttribute("voyage",voyage);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/consultVoy.jsp");
-		dispatcher.forward(request, response);
 		
-	
-	}
+		int id_act=Integer.parseInt(request.getParameter("id"));
+		
+		List<Theme> themes = themeDao.getThemeIdByVoy(id_voy);
+		
+		System.out.println("LA LISTE SIZE EST : "+themes.size());
+		for (int r=0;r<themes.size();r++) {
+			String nom=themes.get(r).getNom();
+			System.out.println("LE NOM DE CHAQUE THEME est : "+nom);
+			
+		}
+		List <Activite> activites = activiteDao.getActIdByVoy(id_voy);
+		
+		System.out.println("LA LISTE ACTIVITES SIZE EST : "+activites.size());
+		for (int r=0;r<activites.size();r++) {
+			String nom=activites.get(r).getNom();
+			System.out.println("LE NOM DE CHAQUE ACT est : "+nom);
+			
+		}
+		
+		Voyage voyage = voyageDao.getVoyage(id_voy);
+		System.out.println("THE VOYAGE WITH THIS ID IS : "+voyage.getDate_arrivee());
+		
+		request.setAttribute("voyage",voyage);
+		request.setAttribute("themes",themes);
+		request.setAttribute("activites",activites);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("consultVoyage.jsp");
+		dispatcher.forward(request, response);
 	
 	}
 	}
 }
 	
- 	   
- 	   //Voyage voyage = new Voyage(
-		
-		
-	
-			
-        
-	
-	
+ 	
 
 	
 	

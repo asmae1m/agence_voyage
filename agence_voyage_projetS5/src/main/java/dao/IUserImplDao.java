@@ -21,26 +21,15 @@ import org.hibernate.Query;
 public class IUserImplDao implements IUserDao{
 	private static Session session = HibernateUtil.getSessionFactory().openSession();
 
-    public void saveUser(User user) {
-    	
-    
-      try {
-    	    Connection conexion=DAOFACTORY.getConnection();
-			PreparedStatement ps= conexion.prepareStatement("INSERT INTO user (username,password,role) VALUES(?,?,?)");
-			
-			ps.setString(1, user.getLogin());
-			System.out.println("this is the name"+ user.getLogin());
-			ps.setString(2, user.getPassword());
-			ps.setString(3, user.getRole().toString());
-			
-			ps.executeUpdate();
-			ps.close();
-		
-			
-    }catch (SQLException e) {
-		 e.printStackTrace();
-    }
-    }
+	public void saveUser(User  user) {
+		Session session;
+		// TODO Auto-generated method stub
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.save(user);
+		session.getTransaction().commit();
+		session.close();
+	}
     public List<User> getUserList(){
 		 return session.createQuery("from user").list();
 	}
@@ -103,6 +92,24 @@ public class IUserImplDao implements IUserDao{
 			e.printStackTrace();
 		}
 		return b;
+	}
+	public Role getRole (int id) {
+		Connection conexion=DAOFACTORY.getConnection();
+	    User user = new User();
+		try {
+			PreparedStatement ps = conexion.prepareStatement(
+					"select role from user where id=?");
+			ps.setInt(1, id);
+			 ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					
+					user.setRole(Role.valueOf(rs.getString("role")));
+				}			
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user.getRole();
 	}
 	
 

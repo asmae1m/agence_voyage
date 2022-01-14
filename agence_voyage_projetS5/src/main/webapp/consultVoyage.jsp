@@ -34,7 +34,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="afficherVoyages?id_client=${client1.getId() }" class="site_title"><i class="fa fa-money"></i> <span>Nos offres</span></a>
             </div>
-
+      
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
@@ -116,7 +116,7 @@
                                 <li style="font-size:1.5vw"><i class="fa fa-sun-o" hidden="hidden"></i> <strong> ID: </strong> ${ voyage.getId() }</li>
                                 
                                
-                                <li style="font-size:1.5vw"><i class="fa fa-car"></i><strong> Date d'arrivée: </strong>${ voyage.getDate_arrivee() } <br></li>
+                               
                                 <li style="font-size:1.5vw"><i class="fa fa-adjust"></i> <strong>Durée du voyage : </strong>${ voyage.getDuree() } Jours<br></li>
                                
                                 <li style="font-size:1.5vw"><i class="fa fa-sun-o"></i> <strong> Date de départ : </strong> ${ voyage.getDate_depart() }<br></li>
@@ -168,7 +168,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            NOTRE AGENCE | BGI <a href="https://www.umi.ac.ma">Colorlib</a>
+            NOTRE AGENCE | BGI <a href="https://www.umi.ac.ma"></a>
           </div>
           <div class="clearfix"></div>
         </footer>

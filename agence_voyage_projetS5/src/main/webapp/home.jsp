@@ -6,6 +6,8 @@
 <html lang="en">
    <head>
       <!-- basic -->
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -92,7 +94,7 @@
                                  <li class="active"> <a href="#">Trouver</a> </li>
                                  <li> <a href="#about">About</a> </li>
                                  <li><a href="#travel">Activités</a></li>
-                                 <li><a href="#blog">Blog</a></li>
+                                 <li><a href="#blog">Contact us</a></li>
                                  <li><a href="voyagesClient">Nos offres</a></li>
                                  <li><a href="register.jsp">Sign Up</a></li>
                                  <li><a href="login.jsp">Sign In</a></li>
@@ -210,7 +212,7 @@
                <div class="col-md-12 ">
                   <div class="titlepage">
                      <h2>About  our travel agency</h2>
-                     <span> fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,</span>
+                     <span> </span>
                   </div>
                </div>
             </div>
@@ -220,7 +222,14 @@
                <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                      <div class="about-box">
-                        <p> <span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure thereThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there</span></p>
+                        <p> <span>On est des étudiants en 3éme année génie informatique, <br>
+                        on a essayé de developper un site d'une agence de voyage
+                        <br> 
+                        ceci est notre 3éme projet en utilisant la technique de JEE <br>
+                        Tout notre code source du projet est disponible sur ci dessous :)  <br>
+                        <br>
+                        <input type="button" onclick="window.location.href = 'https://github.com/asmae1m/agence_voyage';" value="Notre projet"/>
+                        </span></p>
                         <div class="palne-img-area">
                            <img src="images/plane-img.png" alt="images">
                         </div>
@@ -228,7 +237,8 @@
                   </div>
                </div>
             </div>
-            <a href="#">Read More</a>
+          <br>
+          <br>
          </div>
       </div>
       <!-- end about -->
@@ -461,7 +471,8 @@
       <!-- end our blog -->
       <!-- footer -->
       <footer>
-         <div id="contact" class="footer">
+         <div id="contact" class="footer" style="background-color:#3555dc;">
+         
             <div class="container">
                <div class="row pdn-top-30">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -492,7 +503,7 @@
                         </ul>
                      </div>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                      <div class="Follow">
                         <h3> Contact</h3>
                         <form action="sendEmail" method="post">
@@ -507,24 +518,34 @@
                               <input class="Newsletter" name="password" placeholder="code de votre adresse gmail" type="password">
                            </div>
                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                              <textarea class="textarea" name="commentaire" placeholder="commentaire" type="text">Commentaire</textarea>
+                              <textarea class="textarea" name="commentaire" placeholder="commentaire" >Commentaire</textarea>
                            </div>
                         </div>
-                        <button class="Subscribe">Submit</button>
+                        <button class="Subscribe" type="submit" OnClick="alertName()">Submit</button>
                         </form>
                      </div>
                   </div>
                </div>
                <div class="copyright">
                   <div class="container">
-                     <p>Copyright 2019 All Right Reserved By <a href="https://html.design/">Free html Templates</a></p>
+                    
                   </div>
                </div>
             </div>
          </div>
       </footer>
+      
       <!-- end footer -->
       <!-- Javascript files-->
+      <script type="text/javascript">
+         function alertName(){
+             alert("Votre email est en cours d'envoi!");
+             setTimeout(() => {
+				
+			}, 5000);
+          } 
+        
+</script> 
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
@@ -535,6 +556,8 @@
       <script src="js/custom.js"></script>
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
+      
+     
       <script>
          $(document).ready(function() {
            var owl = $('.owl-carousel');

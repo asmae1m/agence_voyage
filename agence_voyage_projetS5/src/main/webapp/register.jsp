@@ -35,7 +35,7 @@
                 <form action="register" method = "post">
                 <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="nom"placeholder="nom">
+                      <input type="text" class="form-control" required name="nom"placeholder="nom">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -45,7 +45,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="prenom"placeholder="prenom">
+                      <input type="text" class="form-control" required name="prenom"placeholder="prenom">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="nationalite"placeholder="nationalité">
+                      <input type="text" class="form-control" required name="nationalite"placeholder="nationalité">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -65,7 +65,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="adresse"placeholder="Adresse">
+                      <input type="text" class="form-control" required name="adresse"placeholder="Adresse">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -75,7 +75,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="codePostal"placeholder="code postal">
+                      <input type="text" class="form-control" required name="codePostal"placeholder="code postal">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="telephone"placeholder="Telephone">
+                      <input type="text" class="form-control" required name="telephone"placeholder="Telephone">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -95,7 +95,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="username"placeholder="Username">
+                      <input type="text" class="form-control" required name="username"placeholder="Username">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -105,7 +105,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="password" class="form-control" name="password"placeholder="Password">
+                      <input type="password" class="form-control" required name="password"placeholder="Password">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -115,7 +115,7 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="email"placeholder="Email">
+                      <input type="text" class="form-control" required name="email"placeholder="Email">
                       <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -146,7 +146,7 @@
     <!-- endinject -->
     <!-- inject:js -->
     <script src="assets/js/shared/off-canvas.js"></script>
-    <script src="assets/js/shared/misc.js"></script>
+   
     <!-- endinject -->
     <script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
   </body>

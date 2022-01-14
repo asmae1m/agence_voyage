@@ -2,8 +2,9 @@ package controllers;
 
 import java.io.IOException;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import beans.*;
 @WebServlet(urlPatterns = {"/EmailUtilityServlet","/sendEmail"})
 public class EmailUtilityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	HttpSession session;
 	
 	IClientImplDAO clientDao = new IClientImplDAO();
        
@@ -54,8 +56,11 @@ public class EmailUtilityServlet extends HttpServlet {
 		    String password = request.getParameter("password");
 			String sujet = request.getParameter("subject");
 			String commentaire = request.getParameter("commentaire");
+			send.sendMail(from,password,sujet,commentaire);
+		
+			response.sendRedirect("home.jsp");
+		
 			
-			send.sendMail(from,password,sujet,commentaire);	
 			
 		}
 	}

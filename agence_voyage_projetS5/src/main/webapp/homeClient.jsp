@@ -220,7 +220,14 @@
                <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                      <div class="about-box">
-                        <p> <span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure thereThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there</span></p>
+                        <p> <span>On est des étudiants en 3éme année génie informatique, <br>
+                        on a essayé de developper un site d'une agence de voyage
+                        <br> 
+                        ceci est notre 3éme projet en utilisant la technique de JEE <br>
+                        Tout notre code source du projet est disponible sur ci dessous :)  <br>
+                        <br>
+                        <input type="button" onclick="window.location.href = 'https://github.com/asmae1m/agence_voyage';" value="Notre projet"/>
+                        </span></p>
                         <div class="palne-img-area">
                            <img src="images/plane-img.png" alt="images">
                         </div>
@@ -466,7 +473,7 @@
       <!-- end our blog -->
       <!-- footer -->
       <footer>
-         <div id="contact" class="footer">
+         <div id="contact" class="footer" style="background-color:#3555dc;">
             <div class="container">
                <div class="row pdn-top-30">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -522,12 +529,18 @@
                </div>
                <div class="copyright">
                   <div class="container">
-                     <p>Copyright 2019 All Right Reserved By <a href="https://html.design/">Free html Templates</a></p>
+                  
                   </div>
                </div>
             </div>
          </div>
       </footer>
+      <p style=" .footer {
+     background-color: #022739;
+     margin-top: 90px;"></p> 
+    
+}
+      
       <!-- end footer -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>

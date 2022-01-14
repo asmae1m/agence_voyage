@@ -268,7 +268,7 @@
       <!-- end our blog -->
       <!-- footer -->
       <footer>
-         <div id="contact" class="footer">
+         <div id="contact" class="footer" style="background-color:#3555dc;">
             <div class="container">
                <div class="row pdn-top-30">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -324,7 +324,7 @@
                </div>
                <div class="copyright">
                   <div class="container">
-                     <p>Copyright 2019 All Right Reserved By <a href="https://html.design/">Free html Templates</a></p>
+                   
                   </div>
                </div>
             </div>

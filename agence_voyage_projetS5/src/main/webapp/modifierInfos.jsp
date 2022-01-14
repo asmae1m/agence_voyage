@@ -74,12 +74,14 @@
 <br>
             <div class="row">
             <br>
-                <h4 class="card-title">Vos informations personnelles</h4>
+               
                 
                     <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Vos informations personnelles</h4>
+                    <br>
+                    <br>
                     <form class="class-form" action ="modifierInfos" method="POST" >
                         
                    
@@ -158,6 +160,7 @@
                           </div>
                         </div>
                       </div>
+                      <br>
                       <div class="col-12 grid-margin stretch-card">
                    
                   </div>

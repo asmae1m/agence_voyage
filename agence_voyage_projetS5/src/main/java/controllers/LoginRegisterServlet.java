@@ -5,10 +5,13 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -157,17 +160,29 @@ public class LoginRegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		try {
 
+			MessageDigest md = MessageDigest.getInstance("md5");
+			byte[] hashInBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+			
+			
+			StringBuilder sb = new StringBuilder();
+			
+			for (byte b : hashInBytes) {
+				sb.append(String.format("%02x", b));
+			}
+			System.out.println("le mot de passe après hachage est : "+sb.toString());
+		
 	
-		    if (userDao.login(username, password)==true) {
+		    if (userDao.login(username, sb.toString())==true) {
 
-			User user = userDao.getUser(username, password);
+			User user = userDao.getUser(username, sb.toString());
 			System.out.println("username" + user.getLogin());
 			System.out.println("role: " + user.getRole());
 			System.out.println("idUser: " + user.getId());
 			
 			
-             if (user.getRole().name().equals("Client")) {
+             if (userDao.getRole(user.getId()).equals(Role.Client)) {
             	Client client = new Client();
             	session.setAttribute("client", user);
 				System.out.print("you are a client!!!");
@@ -182,7 +197,7 @@ public class LoginRegisterServlet extends HttpServlet {
 				System.out.println("YOU ARE HERE : "+request.getServletPath());
 				
              }
-             else if (user.getRole().name().equals("admin")) {
+             else if (userDao.getRole(user.getId()).equals(Role.admin)) {
  				session.setAttribute("admin", user);
  				System.out.print("you are an admin ");
  				request.getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
@@ -192,6 +207,10 @@ public class LoginRegisterServlet extends HttpServlet {
             	 request.getRequestDispatcher("/error-404.jsp").forward(request, response);
              }
 		 }
+		catch (NoSuchAlgorithmException e){
+			System.err.println("Erreur: "+e.toString());
+		}
+	}
 	
 	
 	if (request.getServletPath().equals("/ajoutVoyage")) {
@@ -214,6 +233,22 @@ public class LoginRegisterServlet extends HttpServlet {
 		voy.setDate_arrivee(request.getParameter("date_arrive"));
 		voy.setDate_depart(request.getParameter("date_depart"));
 		voy.setDuree(request.getParameter("duree"));
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("date_depart"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Calendar cal = Calendar.getInstance();
+		Date date1=new Date(date.getTime());
+		cal.setTime(date1);
+		cal.add(Calendar.DAY_OF_MONTH, Integer.parseInt(request.getParameter("duree")));
+		Date date_arrive = cal.getTime();
+		SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd");
+		voy.setDate_arrivee(newFormat.format(date_arrive));
+		System.out.println("date d'arriver : "+newFormat.format(date_arrive));
+		
 		voy.setPrix(Float.parseFloat(request.getParameter("prix")));
 		voy.setType_voyage(request.getParameter("type"));
 		voy.setImage(inputStream1.readAllBytes());
@@ -223,7 +258,9 @@ public class LoginRegisterServlet extends HttpServlet {
 		int maison_hote=Integer.parseInt(request.getParameter("maison_hote"));
 		int chalet=Integer.parseInt(request.getParameter("chalet"));
 		int chambre_hotel=Integer.parseInt(request.getParameter("chambre_hotel"));
+		
 		i.saveVoyage(voy);
+		
 		for(int j=0;j<themes.length;j++) {
 			Theme e=new Theme();
 			e.setNom(themes[j]);
@@ -390,6 +427,7 @@ public class LoginRegisterServlet extends HttpServlet {
 		voya.setDuree(request.getParameter("duree"));
 		voya.setPrix(Float.parseFloat(request.getParameter("prix")));
 		i.updateVoyage(voya);
+		
 		request.getRequestDispatcher("/listVoyages").forward(request, response);
 		
 	}
@@ -856,7 +894,7 @@ if (request.getServletPath().equals("/searchNoConn")) {
 			dispatcher.forward(request, response);
 		}
 	}
-if (request.getServletPath().equals("/consulterVoyage")) {
+     if (request.getServletPath().equals("/consulterVoyage")) {
 		
 		int id_voy = Integer.parseInt(request.getParameter("id"));
 		
